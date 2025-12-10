@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>المفضلة - دليل الأطباء</title>
+
+<!-- Google Fonts: Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet"/>
+
+<!-- MATERIAL ICONS - FULL SUPPORT -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL,wght,GRAD,opsz@0,400,0,48&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          start: "#470d9d",
+          end: "#907ffc"
+        }
+      },
+      fontFamily: {
+        sans: ["Cairo", "sans-serif"],
+      },
+      boxShadow: {
+        soft: "0 10px 25px -5px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03)",
+      },
+      borderRadius: {
+        '3xl': '1.5rem',
+      }
+    }
+  }
+}
+</script>
+
+<style>
+/* تحسين عرض الأيقونات */
+.material-icons,
+.material-symbols-outlined {
+  font-family: 'Material Icons', 'Material Symbols Outlined' !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  display: inline-block !important;
+  line-height: 1 !important;
+}
+
+/* ارتفاع الصفحة */
+body {
+  min-height: max(884px, 100dvh);
+}
+
+/* قلب كامل للقلب المعبأ */
+.fill-icon {
+  font-variation-settings: 'FILL' 1;
+  color: #e63946 !important;
+}
+
+/* حركة الإزالة */
+.card-fade-out {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: 0.3s ease;
+}
+
+/* زر مسح الكل */
+.clear-btn {
+  background: #ffffff22;
+  border: 1px solid #ffffff55;
+}
+</style>
+</head>
+
+<body class="bg-gradient-to-b from-primary-start to-primary-end font-sans">
+
+<div class="max-w-md mx-auto p-4 flex flex-col min-h-screen">
+
+  <!-- الترويسة -->
+  <header class="py-4">
+    <div class="flex items-center justify-between text-white">
+      
+  <button onclick="history.back()" class="text-white flex size-10 items-center justify-center">
+    <span class="material-symbols-outlined text-3xl" style="transform: scaleX(-1);">arrow_back_ios_new</span>
+  </button>
+      <h1 class="text-xl font-bold">المفضلة</h1>
+
+      <button id="clearAllBtn" class="px-3 py-1 rounded-full text-white text-sm clear-btn">
+        مسح الكل
+      </button>
+    </div>
+  </header>
+
+  <!-- المحتوى -->
+  <main id="favContainer" class="flex-grow overflow-y-auto space-y-4 pt-4 pb-24"></main>
+
+  <!-- شريط التنقل السفلي -->
+  <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/80 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] rounded-t-3xl px-4 py-3">
+    <div class="flex justify-around items-center">
+      <a class="flex flex-col items-center text-gray-400" href="home_ar.html">
+        <span class="material-symbols-outlined">home</span>
+        <span class="text-xs">الرئيسية</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-400" href="news_ar.html">
+        <span class="material-symbols-outlined">article</span>
+        <span class="text-xs">الأخبار</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-400" href="search_ar.html">
+        <span class="material-symbols-outlined">search</span>
+        <span class="text-xs">بحث</span>
+      </a>
+      <a class="flex flex-col items-center text-primary-start font-bold" href="favorite_ar.html">
+        <span class="material-symbols-outlined">favorite</span>
+        <span class="text-xs">المفضلة</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-400" href="profile_ar.html">
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-xs">الملف الشخصي</span>
+      </a>
+    </div>
+  </nav>
+
+</div>
+
+<script>
+/* بيانات الأطباء */
+const doctors = {
+  "1": { name:"د. صلاح عمر", title:"MD, PhD - أخصائي قلب",
+         img:"https://lh3.googleusercontent.com/aida-public/AB6AXuDT4TyehDg-7SN9XrvlpFMKlSjAVD1IqmYXY4fFkNYV80AR8ndoxq-tfFvs8pZIEx6kEkJEHJ5O4MDZTHWaHGZraoRqrnWk-xQITDOV1J7tbTT5sfZvFfI-srKj4ThVI9_FLIUnZg6t5hL4a1pUw0psou8nvJ4zNHjfFuzxuxI6KS2CZje6H1gGMAl38JXQWxgAmQZJTfsFMPY5HLxbSnQmSR81bej-KUVulv_rdtpCM013vNTTeoDS75kOG68SlN-U7ZAIi1fobcs",
+         location:"قصر الباسل، الفيوم", rating:"4.5", reviews:"(120)", price:"250 جنيه" },
+
+  "2": { name:"د. أميرة حسن", title:"MD - طبيبة أطفال",
+         img:"https://lh3.googleusercontent.com/aida-public/AB6AXuBtUKXmfKzsaWdm12KGOc-JruoEzB-4Ukuuwv2R0LM3uN7h-E8mkZCNCknpjBbHZLVNJNbsKgOE1U5LOKQhN8f0_BGJA79SC5jPYSDg68ywyrQdJsDvHLOenx_NitNqmYUc8WjPS40YkpiIFL4r-2wn0sZ2ymA4KZ7qOAYaG912bDPUJY3KNJA0hrXtzTrU8tsiboE-BmnhD--zVD1OxQmrzQgEayFYoFNBEk9vgusGDMNu6pYUqlAmfmk71yYc06J7oIERNB_SK2M",
+         location:"وسط البلد، القاهرة", rating:"4.8", reviews:"(215)", price:"300 جنيه" },
+
+  "3": { name:"د. يوسف علي", title:"DD - أخصائي أعصاب",
+         img:"https://lh3.googleusercontent.com/aida-public/AB6AXuAwP-bRT-PxoDbbY2mTHUG4Vq2DYHHBkTuTbRudE_JLEaV65OGOJ9Lj6TwliUTJFdSeSKT5cuFW-xaLaT-SMh0PAU4Ha1zFQyjdyJDMF5ZR5gmcxLD-K19khPouiWbFwi3F0bRFQnG_4JbiF-TD8BVVeky7Z5kuS1Xyp9nSV_shH-1FkENaz5otV5Go52shuTwL_nRg1HKtHVYznKUwjCEH6fRbVj3yVLnMP6rdCZgtbRhVXQPsI-QiHnjKzH20m-Bz2wEoB799Lgg",
+         location:"الهرم، الجيزة", rating:"4.2", reviews:"(88)", price:"200 جنيه" },
+
+  "4": { name:"د. فاطمة أحمد", title:"MD, DDS - نساء وتوليد",
+         img:"https://lh3.googleusercontent.com/aida-public/AB6AXuCHdDnWfMVTزjFW26jزwt6PL4CiTJLi5UXbjJOkBsM4YRf8enBH-HaZUqzCFM_Hb3aHVGHtklvUioFpXpuY_fO9OoTSry3IhPdMBravCZv5ulbdwt7t-chAZE1cirtHgLI4vueo41NV4A_z_IoTQHDKpqfCdC5qpZTnibAAwcbTltxkrYh1eIEDmyfS07dzxdPLo1Kik8unHHF3As8rdkeKQPulbWVvPSM_xNglpBzrvGeQ7A29CXCuj3n00ZnzakzA8VKa1n0w8Q",
+         location:"الزمالك، القاهرة", rating:"4.9", reviews:"(302)", price:"450 جنيه" },
+
+  "5": { name:"د. كريم سعيد", title:"PhD - أمراض جلدية",
+         img:"https://lh3.googleusercontent.com/aida-public/AB6AXuAFB2S1Urr1x-QUzmzHen1TGs7yRp8gdUWMuNY_ZLilfotr-UYlWQHXwQB72h84k4-_pqbtmKhoG3INTdwV1AHOcF0f7IhMrjLEDbReqm3_QaQ_OjI6yOKkjpNDL5brXLEcayQ_luEYOWsUTOY6Wl6IpGGlcxozAuAMpJuaTTxncOi3ZndDkMKstq6C16ce6z6vCmBP8ozKAjjbmi5pEwUME1IXPGZvtGeik3TG1G4ek6UlwTyu5fmzcL24tWpurw9EUHEdgImyEYo",
+         location:"المعادي، القاهرة", rating:"4.6", reviews:"(150)", price:"350 جنيه" }
+};
+
+/* عرض المفضلة */
+function renderFavorites() {
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const container = document.getElementById("favContainer");
+
+  container.innerHTML = "";
+
+  if (favorites.length === 0) {
+    container.innerHTML = `
+      <div class="text-center text-white mt-16">
+        <p class="text-2xl font-bold mb-2">لا توجد عناصر مفضلة حتى الآن</p>
+        <a href="search.html" class="text-sm underline opacity-80">ابحث عن الأطباء</a>
+      </div>`;
+    return;
+  }
+
+  favorites.forEach(id => {
+    const doc = doctors[id];
+    if (!doc) return;
+
+    const card = document.createElement("div");
+    card.className = "doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4";
+    card.setAttribute("data-id", id);
+
+    card.innerHTML = `
+      <img class="w-24 h-24 rounded-2xl object-cover" src="${doc.img}">
+      <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1 mr-3">
+          <div>
+            <h2 class="font-bold text-lg text-gray-900">${doc.name}</h2>
+            <p class="text-sm text-gray-500">${doc.title}</p>
+          </div>
+
+          <button class="fav-btn" data-id="${id}">
+            <span class="material-symbols-outlined fill-icon fav-icon">favorite</span>
+          </button>
+        </div>
+
+        <p class="text-sm text-gray-500 mb-2 mr-3">${doc.location}</p>
+        <p class="text-sm text-gray-500 mb-2 mr-3">${doc.location}</p>
+
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-yellow-400">star</span>
+            <span class="font-semibold text-gray-800">${doc.rating}</span>
+            <span class="text-sm text-gray-400">${doc.reviews}</span>
+          </div>
+
+          <p class="font-bold text-lg text-primary-start">${doc.price}</p>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  attachActions();
+}
+
+/* إزالة عنصر واحد من المفضلة */
+function attachActions() {
+  const favButtons = document.querySelectorAll(".fav-btn");
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  favButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const card = btn.closest(".doctor-card");
+
+      favorites = favorites.filter(f => f !== id);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+
+      card.classList.add("card-fade-out");
+      setTimeout(() => card.remove(), 300);
+
+      if (favorites.length === 0) {
+        setTimeout(() => {
+          window.location.href = "favorites_empty.html";
+        }, 350);
+      }
+    });
+  });
+}
+
+/* مسح كل المفضلة */
+document.getElementById("clearAllBtn").addEventListener("click", () => {
+  localStorage.setItem("favorites", JSON.stringify([]));
+
+  document.getElementById("favContainer").innerHTML = `
+    <div class="text-center text-white mt-16">
+      <p class="text-2xl font-bold mb-2">لا توجد عناصر مفضلة حتى الآن</p>
+      <a href="search.html" class="text-sm underline opacity-80">ابحث عن الأطباء</a>
+    </div>
+  `;
+
+  setTimeout(() => {
+    window.location.href = "favorites_empty_ar.html";
+  }, 800);
+});
+
+document.addEventListener("DOMContentLoaded", renderFavorites);
+</script>
+
+</body>
+</html>

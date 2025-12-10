@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="dark" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>إنشاء حساب</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      min-height: max(884px, 100dvh);
+      direction: rtl; /* تغيير اتجاه الكتابة إلى اليمين */
+    }
+  </style>
+</head>
+<body class="bg-[#470d9d]">
+  <div class="relative flex min-h-screen w-full flex-col bg-gradient-to-b from-[#470d9d] to-[#907ffc] p-4">
+    <div class="flex w-full max-w-md flex-col items-center justify-center mx-auto py-8">
+      <div class="mb-6 flex h-24 w-24 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-[#6853ED] to-[#4965F2] p-3 shadow-lg">
+        <div class="relative mb-1">
+          <svg class="h-10 w-10 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path>
+          </svg>
+          <div class="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white">
+            <svg class="h-3 w-3 text-[#4965F2]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+        <span class="text-sm font-bold text-white tracking-wide">Blue Right</span>
+      </div>
+      <h1 class="text-white tracking-light text-3xl font-bold leading-tight text-center pb-2">إنشاء حساب</h1>
+      <p class="text-white/80 text-base font-light leading-normal pb-8 text-center px-4">انضم إلى مجتمعنا من الأطباء والمرضى الموثوق بهم.</p>
+      <div class="w-full space-y-4">
+        <div class="flex flex-col">
+          <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-gray-800 focus:outline-0 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 border-none bg-white shadow-md h-14 placeholder:text-gray-400 p-4 text-base font-normal leading-normal" placeholder="الاسم الكامل" type="text" value=""/>
+        </div>
+        <div class="flex flex-col">
+          <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-gray-800 focus:outline-0 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 border-none bg-white shadow-md h-14 placeholder:text-gray-400 p-4 text-base font-normal leading-normal" placeholder="عنوان البريد الإلكتروني" type="email" value=""/>
+        </div>
+        <div class="relative flex flex-col">
+          <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-gray-800 focus:outline-0 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 border-none bg-white shadow-md h-14 placeholder:text-gray-400 p-4 pr-12 text-base font-normal leading-normal" placeholder="كلمة المرور" type="password" value=""/>
+          <button class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 hover:text-gray-600">
+            <span class="material-symbols-outlined">visibility_off</span>
+          </button>
+        </div>
+        <div class="flex flex-col">
+          <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-gray-800 focus:outline-0 focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 border-none bg-white shadow-md h-14 placeholder:text-gray-400 p-4 text-base font-normal leading-normal" placeholder="رقم الهاتف (اختياري)" type="tel" value=""/>
+        </div>
+      </div>
+      <div class="flex w-full items-center gap-2 py-6">
+        <input class="form-checkbox h-5 w-5 rounded border-white/50 bg-transparent text-[#6A45F5] focus:ring-2 focus:ring-[#907ffc] focus:ring-offset-0 focus:ring-offset-transparent shadow-sm" id="terms-checkbox" type="checkbox"/>
+        <label class="text-sm text-white/90" for="terms-checkbox">
+          أوافق على <a class="font-semibold text-white underline" href="privacy_policy_ar.html">الشروط وسياسة الخصوصية</a>.
+        </label>
+      </div>
+      <a href="account_created_successfully_ar.html" class="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#6A45F5] px-6 text-base font-bold text-white shadow-lg transition-colors hover:bg-[#5b3cc8] focus:outline-none focus:ring-2 focus:ring-[#907ffc] focus:ring-offset-2 focus:ring-offset-[#470d9d]">
+        تسجيل
+      </a>
+      <div class="pt-6 text-center">
+        <p class="text-sm text-white/70">هل لديك حساب بالفعل؟ <a class="font-semibold text-white hover:underline" href="login_ar.html">تسجيل الدخول</a></p>
+      </div>
+      <div class="relative flex w-full items-center justify-center py-8">
+        <div class="h-px w-full bg-white/20"></div>
+        <span class="absolute bg-gradient-to-b from-[#470d9d] to-[#907ffc] px-3 text-sm font-medium text-white/80" style="background-image: linear-gradient(to bottom, #5e2ab9, #7957e2);">أو</span>
+      </div>
+      <div class="flex w-full flex-col space-y-4">
+        <a href="https://google.com" target="_blank" 
+           class="w-full flex items-center justify-center bg-white text-gray-700 font-medium py-3 rounded-full shadow-md hover:bg-gray-50 transition-colors duration-300">
+          <span class="mr-3">تابع باستخدام Google</span>
+          <svg class="w-6 h-6" viewBox="0 0 48 48">
+            <path d="M24 9.5c3.9 0 6.9 1.6 9.1 3.7l6.9-6.9C35.9 2.5 30.3 0 24 0 14.9 0 7.3 5.4 3 13l8.4 6.5C13.2 13.2 18.2 9.5 24 9.5z" fill="#4285F4"></path>
+            <path d="M46.2 25.1c0-1.6-.1-3.2-.4-4.7H24v9h12.4c-.5 2.9-2.2 5.4-4.7 7.1l7.3 5.7c4.3-4 6.9-10 6.9-17.1z" fill="#34A853"></path>
+            <path d="M11.4 19.5C10.5 22.1 10 25 10 28s.5 5.9 1.4 8.5L3 43C1.1 38.5 0 33.5 0 28s1.1-10.5 3-15l8.4 6.5z" fill="#FBBC05"></path>
+            <path d="M24 48c6.3 0 11.9-2.1 15.9-5.7l-7.3-5.7c-2.1 1.4-4.8 2.2-7.6 2.2-5.8 0-10.8-3.7-12.6-8.8l-8.4 6.5C7.3 42.6 14.9 48 24 48z" fill="#EA4335"></path>
+            <path d="M0 0h48v48H0z" fill="none"></path>
+          </svg>
+        </a>
+        <a href="https://facebook.com" target="_blank" 
+           class=" w-full flex items-center justify-center bg-white text-gray-700 font-medium py-3 rounded-full shadow-md hover:bg-gray-50 transition-colors duration-300">
+          <span class="mr-3">تابع باستخدام Facebook</span>
+          <svg class="w-6 h-6" viewBox="0 0 24 24">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-1.5c-1 0-1.5.5-1.5 1.5V12h3l-.5 3h-2.5v6.8c4.56-.93 8-4.96 8-9.8z" fill="#1877F2"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

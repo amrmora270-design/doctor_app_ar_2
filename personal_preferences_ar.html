@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>التفضيلات الشخصية</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<style>
+    body { font-family: 'Cairo', 'Roboto', sans-serif; }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+
+    /* Toggle CSS */
+    .toggle { position: relative; display: inline-flex; align-items: center; }
+    .toggle-input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; z-index: 10; cursor: pointer; }
+    .toggle-track { position: absolute; inset: 0; border-radius: 9999px; background: #e5e7eb; transition: background-color .25s ease; }
+    .toggle-knob { position: absolute; left: 4px; top: 2px; width: 27px; height: 27px; border-radius: 9999px; background: white; box-shadow: 0 2px 6px rgba(2,6,23,0.18); transform: translateX(0); transition: transform .25s cubic-bezier(.2,.9,.3,1); }
+
+    .toggle-input:checked + .toggle-track { background: #470d9d; }
+    .toggle-input:checked + .toggle-track + .toggle-knob { transform: translateX(20px); }
+
+    .toggle-input:focus + .toggle-track { outline: 3px solid rgba(71,13,157,0.18); outline-offset: 2px; }
+
+    .h-31 { height: 31px; }
+    .w-51 { width: 51px; }
+
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: none !important;
+    }
+
+</style>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#460df2",
+          "background-light": "#f6f5f8",
+          "background-dark": "#141022",
+        },
+        fontFamily: { "display": ["Cairo", "Roboto", "Inter"] },
+        borderRadius: {"DEFAULT":"0.5rem","lg":"1rem","xl":"1.5rem","full":"9999px"},
+      },
+    },
+  }
+</script>
+</head>
+
+<body class="font-display bg-gradient-to-b from-[#470d9d] to-[#907ffc] min-h-screen m-0">
+
+<div class="relative flex flex-col min-h-screen w-full overflow-x-hidden p-6 pt-12">
+
+  <div class="flex-shrink-0 text-center">
+    <h1 class="text-white text-3xl font-bold">التفضيلات الشخصية</h1>
+    <p class="text-white text-base leading-normal pt-2">قم بتخصيص تجربة تطبيقك لتناسب احتياجاتك.</p>
+  </div>
+
+  <div class="mt-8 mb-4 w-full max-w-md mx-auto bg-white rounded-xl shadow-lg p-6">
+    
+    <!-- إعدادات العرض -->
+    <div>
+      <h3 class="text-gray-900 text-lg font-bold mb-4">إعدادات العرض</h3>
+
+      <div class="space-y-4">
+
+        <!-- الوضع الداكن -->
+        <div class="flex items-center gap-4 min-h-14 justify-between">
+          <div class="flex items-center gap-4">
+            <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+              <span class="material-symbols-outlined">dark_mode</span>
+            </div>
+            <p class="text-gray-800 text-base">الوضع الداكن</p>
+          </div>
+
+          <label class="toggle h-31 w-51 p-0.5">
+            <input class="toggle-input" type="checkbox" checked/>
+            <span class="toggle-track"></span>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+        <!-- حجم نص كبير -->
+        <div class="flex items-center gap-4 min-h-14 justify-between">
+          <div class="flex items-center gap-4">
+            <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+              <span class="material-symbols-outlined">text_fields</span>
+            </div>
+            <p class="text-gray-800 text-base">حجم نص كبير</p>
+          </div>
+
+          <label class="toggle h-31 w-51 p-0.5">
+            <input class="toggle-input" type="checkbox"/>
+            <span class="toggle-track"></span>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- اللغة والمنطقة -->
+    <div class="mt-8">
+      <h3 class="text-gray-900 text-lg font-bold mb-4">اللغة والمنطقة</h3>
+
+      <div class="space-y-4">
+
+        <!-- لغة التطبيق -->
+        <div class="flex items-center gap-4 min-h-14">
+          <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+            <span class="material-symbols-outlined">language</span>
+          </div>
+          <p class="text-gray-800 flex-1">لغة التطبيق</p>
+
+          <div class="relative">
+            <select class="w-32 bg-gray-100 border border-gray-200 py-2 pr-4 pl-8 rounded-lg focus:outline-none text-right">
+              <option>العربية</option>
+              <option>الإنجليزية</option>
+            </select>
+            <span class="material-symbols-outlined absolute left-2 top-2.5 text-gray-700 pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+        <!-- المنطقة -->
+        <div class="flex items-center gap-4 min-h-14">
+          <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+            <span class="material-symbols-outlined">public</span>
+          </div>
+          <p class="text-gray-800 flex-1">المنطقة المفضلة</p>
+
+          <div class="relative">
+            <select class="w-32 bg-gray-100 border border-gray-200 py-2 pr-4 pl-8 rounded-lg focus:outline-none text-right">
+              <option>السعودية</option>
+              <option>مصر</option>
+            </select>
+            <span class="material-symbols-outlined absolute left-2 top-2.5 text-gray-700 pointer-events-none">expand_more</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- تفضيلات دليل الأطباء -->
+    <div class="mt-8">
+      <h3 class="text-gray-900 text-lg font-bold mb-4">تفضيلات دليل الأطباء</h3>
+
+      <div class="space-y-4">
+
+        <!-- عرض حسب التخصص -->
+        <div class="flex items-center justify-between min-h-14">
+          <div class="flex items-center gap-4">
+            <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+              <span class="material-symbols-outlined">category</span>
+            </div>
+            <p class="text-gray-800">عرض حسب التخصص</p>
+          </div>
+
+          <label class="toggle h-31 w-51 p-0.5">
+            <input class="toggle-input" type="checkbox" checked/>
+            <span class="toggle-track"></span>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+        <!-- عرض الموثوقين فقط -->
+        <div class="flex items-center justify-between min-h-14">
+          <div class="flex items-center gap-4">
+            <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+              <span class="material-symbols-outlined">verified_user</span>
+            </div>
+            <p class="text-gray-800">عرض الموثوقين فقط</p>
+          </div>
+
+          <label class="toggle h-31 w-51 p-0.5">
+            <input class="toggle-input" type="checkbox" checked/>
+            <span class="toggle-track"></span>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+        <!-- أولوية الأقرب -->
+        <div class="flex items-center justify-between min-h-14">
+          <div class="flex items-center gap-4">
+            <div class="text-gray-600 bg-gray-100 rounded-lg size-10 flex items-center justify-center">
+              <span class="material-symbols-outlined">near_me</span>
+            </div>
+            <p class="text-gray-800">تحديد أولوية الأقرب</p>
+          </div>
+
+          <label class="toggle h-31 w-51 p-0.5">
+            <input class="toggle-input" type="checkbox"/>
+            <span class="toggle-track"></span>
+            <span class="toggle-knob"></span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- زر الحفظ مع مسافة أسفل -->
+<div class="w-full max-w-md mx-auto mt-auto mb-10">
+  <button 
+    onclick="window.location.href='settings_ar.html'"
+    class="w-full bg-[#470d9d] text-white font-bold py-4 px-4 rounded-full shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#470d9d]">
+    حفظ التفضيلات
+  </button>
+</div>
+
+</body>
+</html>

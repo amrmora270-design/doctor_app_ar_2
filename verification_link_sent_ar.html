@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="dark" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تم إرسال رابط التحقق</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+  body {
+    font-family: 'Cairo', sans-serif;
+  }
+</style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#6d13ec",
+          "background-light": "#f7f6f8",
+          "background-dark": "#181022",
+        },
+        fontFamily: { "display": ["Cairo"] },
+        borderRadius: {
+          "DEFAULT": "1rem",
+          "lg": "1.5rem",
+          "xl": "3rem",
+          "full": "9999px"
+        },
+      },
+    },
+  }
+</script>
+<style>
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+</head>
+<body class="font-display">
+  <div class="relative flex min-h-screen w-full flex-col bg-gradient-to-b from-[#470d9d] to-[#907ffc] group/design-root overflow-x-hidden">
+    <main class="flex w-full grow flex-col px-4 pt-12 pb-8">
+      <div class="flex w-full flex-1 flex-col items-center justify-center">
+
+        <!-- صورة/رسم توضيحي -->
+        <div class="relative mb-8 flex h-32 w-32 items-center justify-center rounded-full bg-white/20">
+          <div class="relative flex h-24 w-24 items-center justify-center rounded-full bg-white">
+            <span class="material-symbols-outlined text-5xl text-[#470d9d]">mark_email_read</span>
+            <div class="absolute -right-1 -top-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#6d13ec]">
+              <span class="material-symbols-outlined text-xl text-white">check</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- عنوان -->
+        <h1 class="text-white tracking-light text-[32px] font-bold leading-tight text-center pb-3 pt-6">تم إرسال رابط التحقق!</h1>
+
+        <!-- نص الجسم -->
+        <p class="max-w-md text-[#E0E0E0] text-base font-normal leading-normal pb-3 pt-1 text-center">
+          لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى عنوان بريدك الإلكتروني. يرجى التحقق من صندوق الوارد الخاص بك (والمجلدات غير المرغوب فيها).
+        </p>
+
+        <!-- بطاقة -->
+        <div class="mt-6 mb-8 w-full max-w-sm p-4">
+          <div class="flex items-center justify-start gap-4 rounded-lg bg-white/10 p-4">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-white/20">
+              <span class="material-symbols-outlined text-2xl text-white">email</span>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="text-white text-base font-bold leading-tight">تم إرسال البريد إلى</p>
+              <p class="text-[#E0E0E0] text-sm font-normal leading-normal">ahmed•••@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- مجموعة الأزرار -->
+        <div class="flex w-full max-w-sm flex-col items-stretch gap-4 px-4 py-3">
+          <!-- زر فتح التطبيق -->
+          <button
+            type="button"
+            onclick="window.location.href='https://mail.google.com/mail/u/0/#inbox'"
+            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-[#470d9d] text-white text-base font-bold leading-normal tracking-[0.015em] w-full shadow-lg hover:bg-[#5a1bb5] transition">
+            <span class="truncate">فتح تطبيق البريد</span>
+          </button>
+
+          <!-- زر إعادة الإرسال -->
+          <button
+            type="button"
+            onclick="window.location.href='forgot_password_ar.html'"
+            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-transparent text-white text-base font-bold leading-normal tracking-[0.015em] w-full border border-white/50 hover:bg-white/10 transition">
+            <span class="truncate">إعادة إرسال الرابط</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- نص وترويسة footer -->
+      <div class="mt-8 flex flex-col items-center justify-center gap-2 text-center">
+        <p class="text-[#BDBDBD] text-sm font-normal">لم تستلم البريد بعد بضع دقائق؟</p>
+        <a class="text-[#907ffc] font-bold text-sm hover:underline" href="#">العودة إلى تسجيل الدخول</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

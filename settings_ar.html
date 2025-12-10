@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>الإعدادات</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<!-- خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+<!-- أيقونات Material -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#4a0da5",
+          "background-light": "#f7f6f8",
+          "background-dark": "#171022",
+        },
+        fontFamily: {
+          display: ["Cairo"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+
+<style type="text/tailwindcss">
+  body {
+    @apply font-display bg-gradient-to-b from-[#470d9d] to-[#907ffc];
+  }
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 24
+  }
+</style>
+
+<style>
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style>
+
+</head>
+<body class="min-h-screen">
+
+<div class="relative flex flex-col w-full min-h-screen font-display overflow-x-hidden">
+
+<header class="p-6 pt-12">
+
+  <button onclick="history.back()" class="text-white flex size-10 items-center justify-center">
+    <span class="material-symbols-outlined text-3xl" style="transform: scaleX(-1);">arrow_back_ios_new</span>
+  </button>
+
+  <h1 class="text-white text-4xl font-bold text-center">الإعدادات</h1>
+</header>
+
+<main class="flex flex-col gap-4 p-6">
+
+  <!-- التفضيلات الشخصية -->
+  <a href="personal_preferences_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <!-- الأيقونة -->
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">tune</span>
+    </div>
+
+    <!-- النص -->
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      التفضيلات الشخصية
+    </p>
+
+    <!-- السهم -->
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- الإشعارات -->
+  <a href="notifications_settings_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">notifications</span>
+    </div>
+
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      الإشعارات
+    </p>
+
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- الأمان وتسجيل الدخول -->
+  <a href="security_login_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">lock</span>
+    </div>
+
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      الأمان وتسجيل الدخول
+    </p>
+
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- الخصوصية -->
+  <a href="privacy_settings_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">visibility</span>
+    </div>
+
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      الخصوصية
+    </p>
+
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- المساعدة والدعم -->
+  <a href="help_support_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">help</span>
+    </div>
+
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      المساعدة والدعم
+    </p>
+
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- عن التطبيق -->
+  <a href="about_ar.html"
+     class="flex cursor-pointer items-center gap-4 rounded-xl bg-white/20 p-4 shadow-lg backdrop-blur-sm active:scale-95">
+
+    <div class="flex size-10 items-center justify-center rounded-lg bg-white/30 text-white">
+      <span class="material-symbols-outlined text-2xl">info</span>
+    </div>
+
+    <p class="flex-1 text-base font-normal leading-normal text-white text-right">
+      عن التطبيق
+    </p>
+
+    <div class="shrink-0">
+      <div class="flex size-7 items-center justify-center text-white">
+        <span class="material-symbols-outlined text-2xl">arrow_back_ios</span>
+      </div>
+    </div>
+  </a>
+
+</main>
+
+<br><br>
+</div>
+
+
+
+
+</body>
+</html>

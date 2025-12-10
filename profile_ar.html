@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>تعديل الملف الشخصي</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4a0da5",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#171022",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            text-align: right; /* محاذاة الأيقونات إلى اليمين */
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            direction: rtl; /* تغيير اتجاه النص إلى اليمين */
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col bg-gradient-to-b from-[#470d9d] to-[#907ffc]">
+    <div class="flex items-center p-4">
+        <h1 class="text-white text-3xl font-bold leading-tight flex-1 text-center">تعديل الملف الشخصي</h1>
+    </div>
+    <div class="flex-1 px-4 py-6">
+        <div class="flex flex-col items-center gap-8">
+            <div class="relative">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-32 w-32 ring-4 ring-white/30" id="profileImage" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-7Enx1522LvzFxbmHJW5baPTh3QIRj1QrdFL0v9b1NMANEAn8r4KqRZ0HBaB7g0VGdkyFkDO-MIywDM_rQQ-bl5MQR5Ly31gedrE-xVcD6lZEuAys9v9HiLpZ484q_9-_6ZWELB-TEPGdHOnxiR6tR4v-1VkT8iuGGjcAmsVQ51yJz4OVwBepuEsLCH9RWxS5s9mVnGXKPqAjNSdYOtOWun20Nb5eq_JVt4kQc5NdBdh86RbgotUDMXFRUGgc8sEmid0MEfHGZKE");'></div>
+                <button class="absolute bottom-0 left-0 flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-white bg-[#470d9d] text-white shadow-md" onclick="document.getElementById('fileInput').click();">
+                    <span class="material-symbols-outlined">edit</span>
+                </button>
+                <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="loadImage(event)" />
+            </div>
+            <div class="flex w-full flex-col gap-4">
+                <div class="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg shadow-black/10">
+                    <div class="text-slate-500 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                        <span class="material-symbols-outlined">person</span>
+                    </div>
+                    <input class="h-full w-full flex-1 border-0 bg-transparent p-0 text-slate-800 placeholder-slate-400 focus:ring-0" placeholder="الاسم الكامل" type="text" value="د. فاطمة السيد"/>
+                </div>
+                <div class="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg shadow-black/10">
+                    <div class="text-slate-500 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                        <span class="material-symbols-outlined">phone</span>
+                    </div>
+                    <input class="h-full w-full flex-1 border-0 bg-transparent p-0 text-slate-800 placeholder-slate-400 focus:ring-0" placeholder="رقم الهاتف" type="text" value="+201005153236"/>
+                </div>
+                <div class="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg shadow-black/10">
+                    <div class="text-slate-500 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                        <span class="material-symbols-outlined">mail</span>
+                    </div>
+                    <input class="h-full w-full flex-1 border-0 bg-transparent p-0 text-slate-800 placeholder-slate-400 focus:ring-0" placeholder="عنوان البريد الإلكتروني" type="email" value="fatima.alsayed@email.com"/>
+                </div>
+                <div class="flex items-center gap-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg shadow-black/10">
+                    <div class="text-slate-500 flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                        <span class="material-symbols-outlined">location_on</span>
+                    </div>
+                    <input class="h-full w-full flex-1 border-0 bg-transparent p-0 text-slate-800 placeholder-slate-400 focus:ring-0" placeholder="المدينة / المنطقة" type="text" value="دبي، الإمارات العربية المتحدة"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sticky bottom-0 w-full p-4">
+        <a href="home_ar.html" class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 bg-gradient-to-r from-[#470d9d] to-[#6c47d8] text-white text-lg font-bold leading-normal tracking-wide shadow-2xl shadow-indigo-500/50">
+            <span>حفظ التغييرات</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    function loadImage(event) {
+        const image = document.getElementById('profileImage');
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            image.style.backgroundImage = `url(${e.target.result})`;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>

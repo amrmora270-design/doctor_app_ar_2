@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تم تقديم التقرير بنجاح</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6110b7",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .gradient-background {
+            background-image: linear-gradient(to bottom, #470d9d, #907ffc);
+        }
+        .material-symbols-outlined {
+            margin-left: 0.5rem;
+            margin-right: 0 !important;
+        }
+    </style>
+<style>
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="font-display">
+<div class="relative flex h-screen w-full flex-col group/design-root overflow-hidden gradient-background">
+<div class="flex flex-col items-center justify-center grow p-6 text-white text-center">
+<div class="flex h-24 w-24 items-center justify-center rounded-full bg-white mb-8">
+<span class="material-symbols-outlined text-5xl text-[#470d9d]">check</span>
+</div>
+<h1 class="text-white tracking-tight text-[32px] font-bold leading-tight pb-3">تم تقديم التقرير</h1>
+<p class="text-white text-base font-normal leading-normal max-w-sm">شكرًا! سيقوم فريقنا بمراجعة وتحديث الملف الشخصي إذا لزم الأمر.</p>
+</div>
+<div class="w-full p-6 pb-12">
+<div class="flex w-full max-w-[480px] mx-auto flex-col items-stretch gap-3">
+<button 
+onclick="window.location.href='doctor_profile_ar.html'"
+class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-white text-[#470d9d] text-base font-bold leading-normal tracking-[0.015em] w-full">
+<span class="truncate">العودة إلى الطبيب</span>
+</button>
+<button 
+ onclick="window.location.href='report_ar.html'"
+class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 bg-transparent text-white text-base font-bold leading-normal tracking-[0.015em] w-full border-2 border-white">
+<span class="truncate">الإبلاغ عن مشكلة أخرى</span>
+</button>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>حول التطبيق</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#4a0da5",
+            "background-light": "#f7f6f8",
+            "background-dark": "#171022",
+          },
+          fontFamily: {
+            display: ["Cairo", "Public Sans", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .gradient-background {
+      background-image: linear-gradient(to bottom, #470d9d, #907ffc);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex min-h-screen w-full flex-col items-center overflow-x-hidden gradient-background p-4 sm:p-6 lg:p-8">
+<h1 class="text-white text-3xl font-bold leading-tight tracking-tight text-center pt-8 pb-6">حول التطبيق</h1>
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark rounded-xl shadow-lg flex flex-col items-center p-6 space-y-4">
+<img class="w-24 h-24 rounded-full -mt-16 border-4 border-background-light dark:border-background-dark" data-alt="Medical Doctor Directory App Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2cP46CSxusgS-mD3p0kGo2l-bMRAWk_QoZD06hxhxWugIc5SNs2MzWfEYuxgrQ6NBamMNPFFBQdfQI8NWeEWupsVqL1yda9h5VyhmBzfAsnH0jU-a0-QxcbDCVtW3VJCo5WCu2mlUaaWYhZtT4A002Iev8N7mHwtyQAre-x9wT93Ugaiv5ztDeiQQOc9hZ09Tmuhjt5pfZZul9h2kaTat9hMgYA0HSuQ0M_E5DQzCf71kBcIuZXz4yj0KnwSu3pv_Q6rdDEwDwwM"/>
+<p class="text-center text-lg font-bold leading-tight text-slate-800 dark:text-slate-100">ابحث وتواصل مع أطباء موثوقين</p>
+<p class="text-center text-slate-600 dark:text-slate-400 text-sm">مهمتنا هي مساعدتك في العثور على أفضل المهنيين الطبيين المعتمدين في منطقتك والتواصل معهم بسهولة. صحتك هي أولويتنا.</p>
+<div class="w-full border-t border-slate-200 dark:border-slate-700 pt-3 mt-2 flex justify-start">
+<p class="text-xs text-slate-500 dark:text-slate-500">الإصدار 1.0.2</p>
+</div>
+</div>
+<div class="w-full max-w-md grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
+<div class="flex flex-col items-center gap-2 rounded-xl bg-background-light/80 dark:bg-background-dark/80 p-4">
+<span class="material-symbols-outlined text-3xl text-slate-700 dark:text-slate-300">shield</span>
+<h2 class="text-slate-800 dark:text-slate-200 text-sm font-bold leading-tight text-center">أطباء معتمدون</h2>
+</div>
+<div class="flex flex-col items-center gap-2 rounded-xl bg-background-light/80 dark:bg-background-dark/80 p-4">
+<span class="material-symbols-outlined text-3xl text-slate-700 dark:text-slate-300">hotel_class</span>
+<h2 class="text-slate-800 dark:text-slate-200 text-sm font-bold leading-tight text-center">تقييمات موثوقة</h2>
+</div>
+<div class="flex flex-col items-center gap-2 rounded-xl bg-background-light/80 dark:bg-background-dark/80 p-4">
+<span class="material-symbols-outlined text-3xl text-slate-700 dark:text-slate-300">location_on</span>
+<h2 class="text-slate-800 dark:text-slate-200 text-sm font-bold leading-tight text-center">بحث ذكي بالموقع</h2>
+</div>
+</div>
+<div class="flex-grow"></div>
+<div class="w-full max-w-md flex flex-col sm:flex-row gap-4 py-8">
+<button
+onclick="window.location.href='privacy_policy_ar.html'"
+ class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-transparent border-2 border-white text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/10 transition-colors">
+<span class="truncate">سياسة الخصوصية</span>
+</button>
+<button 
+onclick="window.location.href='contact_support_ar.html'"
+class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-white text-primary text-base font-bold leading-normal tracking-[0.015em] hover:bg-slate-200 transition-colors">
+<span class="truncate">تواصل مع الدعم</span>
+</button>
+</div>
+</div>
+
+</body></html>

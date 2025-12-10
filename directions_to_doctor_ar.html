@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="light" lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>إرشادات الوصول للطبيب</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .material-symbols-outlined {
+            margin-left: 0.5rem;
+            margin-right: 0 !important;
+        }
+        .rtl-flip {
+            transform: scaleX(-1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6a13ec",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#171022",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark">
+    <div class="relative flex h-screen w-full max-w-md mx-auto flex-col group/design-root overflow-hidden">
+        <!-- خلفية الخريطة -->
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQXWyUZvxAnlT2DoQuxUjtHn3QhbeAs2NP0GV1S_E8dab3r06rDLDDGo_oo5tSHp8vTGNS_o9qq3lkWBCsx9utrhqgBL5E0mWhUBO1hWJIo2bNAYuIeNi93zsqhdCcRORGNRJ8VR34vHUQCaqXdhniGb3nzLEU8JJwquFArf2yrn7pPd-uRTnfZ97tc9UuYnYJRb79P0wE0MY4np0-2JT9mGTB8dzwaBZYXMX9nvBOn0xf-9mfEd9bWBFg-M5kaeICAABa70ZLxAI');"></div>
+
+        <!-- عناصر الواجهة -->
+        <div class="relative z-10 flex h-full flex-col justify-between p-4 pb-0">
+            <!-- بطاقة الطبيب -->
+            <div class="flex flex-col">
+                <div class="flex items-start justify-between gap-4 rounded-lg bg-white p-4 shadow-lg dark:bg-background-dark">
+                    <div class="flex flex-col gap-1 flex-1">
+                        <p class="text-primary/70 dark:text-primary/80 text-sm font-medium leading-normal">١٥ دقيقة (٥.٢ كم)</p>
+                        <p class="text-gray-800 dark:text-gray-100 text-base font-bold leading-tight">د. على الباسل</p>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">أمراض القلب</p>
+                    </div>
+                    <button class="flex size-8 items-center justify-center rounded-full bg-background-light hover:bg-gray-200 dark:bg-background-dark/80 dark:hover:bg-background-dark">
+                        <span class="material-symbols-outlined text-gray-600 dark:text-gray-300 text-xl">close</span>
+                    </button>
+                </div>
+
+                <!-- عناصر التحكم -->
+                <div class="flex flex-col items-start gap-2 mt-4">
+                    <div class="flex flex-col gap-px">
+                        <button class="flex size-10 items-center justify-center rounded-t-full bg-white shadow-md dark:bg-gray-800">
+                            <span class="material-symbols-outlined text-gray-800 dark:text-gray-100">add</span>
+                        </button>
+                        <button class="flex size-10 items-center justify-center rounded-b-full bg-white shadow-md dark:bg-gray-800">
+                            <span class="material-symbols-outlined text-gray-800 dark:text-gray-100">remove</span>
+                        </button>
+                    </div>
+                    <button class="flex size-10 items-center justify-center rounded-full bg-white shadow-md dark:bg-gray-800">
+                        <span class="material-symbols-outlined text-gray-800 dark:text-gray-100">my_location</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- لوحة التوجيهات -->
+            <div class="flex flex-col rounded-t-lg bg-white/90 backdrop-blur-sm dark:bg-background-dark/90 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+                <button class="flex h-5 w-full items-center justify-center pt-3">
+                    <div class="h-1 w-9 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+                </button>
+                <h4 class="text-gray-500 dark:text-gray-400 text-sm font-bold leading-normal tracking-wide px-4 py-2 text-center uppercase">إرشادات الوصول للعيادة</h4>
+
+                <!-- أوضاع التنقل -->
+                <div class="flex px-4 py-3">
+                    <div class="flex h-12 flex-1 items-center justify-center rounded-full bg-background-light dark:bg-black/20 p-1">
+                        <label class="flex cursor-pointer h-full grow items-center justify-center gap-2 overflow-hidden rounded-full px-2 has-[:checked]:bg-primary has-[:checked]:shadow-md has-[:checked]:text-white text-gray-600 dark:text-gray-300 dark:has-[:checked]:text-white text-sm font-medium leading-normal">
+                            <span class="truncate">سيارة</span>
+                            <span class="material-symbols-outlined text-base">directions_car</span>
+                            <input checked="" class="invisible size-0" name="travelMode" type="radio" value="Car"/>
+                        </label>
+                        <label class="flex cursor-pointer h-full grow items-center justify-center gap-2 overflow-hidden rounded-full px-2 has-[:checked]:bg-primary has-[:checked]:shadow-md has-[:checked]:text-white text-gray-600 dark:text-gray-300 dark:has-[:checked]:text-white text-sm font-medium leading-normal">
+                            <span class="truncate">مشي</span>
+                            <span class="material-symbols-outlined text-base">directions_walk</span>
+                            <input class="invisible size-0" name="travelMode" type="radio" value="Walk"/>
+                        </label>
+                        <label class="flex cursor-pointer h-full grow items-center justify-center gap-2 overflow-hidden rounded-full px-2 has-[:checked]:bg-primary has-[:checked]:shadow-md has-[:checked]:text-white text-gray-600 dark:text-gray-300 dark:has-[:checked]:text-white text-sm font-medium leading-normal">
+                            <span class="truncate">مواصلات</span>
+                            <span class="material-symbols-outlined text-base">directions_transit</span>
+                            <input class="invisible size-0" name="travelMode" type="radio" value="Transit"/>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- قائمة التوجيهات -->
+                <div class="flex flex-col gap-4 px-4 pt-2 pb-4 max-h-[25vh] overflow-y-auto">
+                    <div class="flex items-center gap-4 flex-row-reverse">
+                        <div class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
+                            <span class="material-symbols-outlined text-primary dark:text-primary/90">turn_slight_left</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-gray-800 dark:text-gray-100 font-semibold">انعطف يسارًا نحو شارع البلوط</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">٢٠٠ متر</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 flex-row-reverse">
+                        <div class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
+                            <span class="material-symbols-outlined text-primary dark:text-primary/90">straight</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-gray-800 dark:text-gray-100 font-semibold">استمر في شارع الرئيسي</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">١.٢ كم</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 flex-row-reverse">
+                        <div class="flex size-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
+                            <span class="material-symbols-outlined text-primary dark:text-primary/90 rtl-flip">roundabout_right</span>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-gray-800 dark:text-gray-100 font-semibold">في الدوار، اختر المخرج الثاني</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">٢.٥ كم</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- زر البدء -->
+                <div class="bg-white dark:bg-background-dark p-4 pt-2 border-t border-gray-200 dark:border-gray-700">
+                    <button 
+
+ onclick="window.location.href='https://www.google.com/maps?authuser=0'"
+                        class="w-full rounded-full bg-primary py-4 text-center text-base font-bold text-white shadow-lg shadow-primary/30 hover:bg-primary/90">
+                        بدء التنقل
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

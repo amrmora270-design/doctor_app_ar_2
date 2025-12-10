@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>دليل الأطباء</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#136dec",
+          "background-light": "#f6f7f8",
+          "background-dark": "#101822",
+        },
+        fontFamily: {
+          "display": ["Cairo", "sans-serif"]
+        }
+      },
+    },
+  }
+</script>
+
+<style>
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0,'wght'400,'GRAD'0,'opsz'24;
+}
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1;
+}
+</style>
+</head>
+
+<body class="font-display bg-gradient-to-b from-[#470d9d] to-[#907ffc] text-slate-800">
+<div class="relative flex min-h-screen flex-col">
+
+<header class="flex items-center p-4 justify-between">
+  <button onclick="history.back()" class="text-white flex size-10 items-center justify-center">
+    <span class="material-symbols-outlined text-3xl" style="transform: scaleX(-1);">arrow_back_ios_new</span>
+  </button>
+
+  <h1 class="text-white text-lg font-bold">مراجعات المستخدمين</h1>
+
+  <button onclick="window.location.href='settings_ar.html'" class="text-white flex size-10 items-center justify-center">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+  </button>
+</header>
+
+<main class="flex-1 px-4 pb-40">
+
+  <!-- مربع البحث -->
+  <div class="mb-4 relative">
+    <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+    <input class="w-full rounded-full bg-white py-3 pr-12 pl-4 text-base shadow-md" placeholder="ابحث في المراجعات..." type="search"/>
+  </div>
+
+  <!-- أزرار التصفية والفرز -->
+  <div class="mb-6 flex justify-between items-center gap-4">
+
+    <!-- تصفية -->
+    <div class="relative">
+      <button id="filterBtn" class="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white">
+        <span class="material-symbols-outlined text-lg">filter_list</span>
+        <span>تصفية</span>
+      </button>
+
+      <div id="filterMenu" class="hidden absolute right-0 mt-2 w-40 bg-white text-slate-800 rounded-xl shadow-lg overflow-hidden z-50">
+        <button onclick="applyFilter('highest')" class="w-full px-4 py-2 text-right hover:bg-slate-100">أعلى تقييم</button>
+        <button onclick="applyFilter('lowest')" class="w-full px-4 py-2 text-right hover:bg-slate-100">أقل تقييم</button>
+        <button onclick="applyFilter('new')" class="w-full px-4 py-2 text-right hover:bg-slate-100">الأحدث</button>
+        <button onclick="applyFilter('old')" class="w-full px-4 py-2 text-right hover:bg-slate-100">الأقدم</button>
+      </div>
+    </div>
+
+    <p class="text-white/80 text-sm">تم العثور على 28 مراجعة</p>
+
+    <!-- فرز -->
+    <div class="relative">
+      <button id="sortBtn" class="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white">
+        <span class="material-symbols-outlined text-lg">swap_vert</span>
+        <span>فرز</span>
+      </button>
+
+      <div id="sortMenu" class="hidden absolute left-0 mt-2 w-40 bg-white text-slate-800 rounded-xl shadow-lg overflow-hidden z-50">
+        <button onclick="applySort('asc')" class="w-full px-4 py-2 text-right hover:bg-slate-100">الأحدث أولاً</button>
+        <button onclick="applySort('desc')" class="w-full px-4 py-2 text-right hover:bg-slate-100">الأقدم أولاً</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- الكروت -->
+  <div class="space-y-4">
+
+    <!-- بطاقة -->
+    <div class="bg-white rounded-2xl p-4 shadow-lg flex items-start gap-4">
+      <div class="relative">
+        <div class="size-16 rounded-full bg-cover bg-center"
+             style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCVY2RZPVi6DndD3DCaidBcU53dUokrGIlOn8gGdeJegfTWk7CRSPUd0xEKDG-CYIaJ9hgf3pWwTKikaX4v7SM66_TXGUW6GTZgNEKrnhUuMJYPynk6_igM6NDO0dMxQomCoAAgYoB8Sn50Apc4U3Pu4aSxty9_sXQE-nADthGNzjapbZRBlmXgQBhJ8u32ivR2AsjLxzrfT8V11DSSC4W1MUD9T97IA2C6Rcn90ipo7WzdiBXGVCBkLAHnpwyUDxVOXuitP2Vyffs");'>
+        </div>
+        <span class="absolute bottom-0 right-0 h-4 w-4 bg-green-500 border-2 border-white rounded-full"></span>
+      </div>
+
+      <div class="flex-1">
+        <h2 class="font-bold text-lg text-slate-900">إليانور بينا</h2>
+        <p class="text-xs text-slate-500 mb-1">قبل يومين</p>
+
+        <div class="flex items-center gap-1 text-amber-400 mb-2">
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star_half</span>
+        </div>
+
+        <p class="text-sm text-slate-600">
+          مقال ممتاز ومكتوب بدقة شديدة.
+        </p>
+      </div>
+    </div>
+
+    <!-- بطاقة 2 -->
+    <div class="bg-white rounded-2xl p-4 shadow-lg flex items-start gap-4">
+      <div class="relative">
+        <div class="size-16 rounded-full bg-cover bg-center"
+             style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2lIn4CZ6AG2aUYCzgaD2Bi_kA-wfG3s7iQZnn_s7SE3JlSc542SwROqSEj3nKd10hsfT5D_R9ZPidbdHotejkP2DjR-2wkHXTnB7fB5snhAH1thjTSsVcBbj1QWcGKsK0SrAoTsxMO70qwy2XSkJu4DH9QP-5Dha3KdS5cfrJpmfg0eqSyyqFX9T7W0lS4XkfVUpOChFwTZkFMUe5bJfl2MEKwUiY5TSzlYMjz9F6WVQHTQkV4vWCRHmXYh8dJ3oDODqwpzPmrZU");'>
+        </div>
+        <span class="absolute bottom-0 right-0 h-4 w-4 bg-green-500 border-2 border-white rounded-full"></span>
+      </div>
+
+      <div class="flex-1">
+        <h2 class="font-bold text-lg text-slate-900"> محسن غالي</h2>
+        <p class="text-xs text-slate-500 mb-1">قبل 4 أيام</p>
+
+        <div class="flex items-center gap-1 text-amber-400 mb-2">
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined text-slate-300 text-sm">star</span>
+        </div>
+
+        <p class="text-sm text-slate-600">مفيد لكن يحتاج تحديث في بعض النقاط.</p>
+      </div>
+    </div>
+
+    <!-- بطاقة 3 -->
+    <div class="bg-white rounded-2xl p-4 shadow-lg flex items-start gap-4">
+      <div class="relative">
+        <div class="size-16 rounded-full bg-cover bg-center"
+             style='background-image:url("https://lh3.googleusercontent.com/aida-public/AB6AXuCv9Zov26ojIngKNMbbeqQ6vehpffzq3ghbJnuaoPeLL_SVXleM8ZLYwuKqHQg2uM_Bw_4Z9ebtIlNQ146l7t3svGK8EAVxjMeuXOrea1nbZuM2h37a24AuIJNOys5IWjHs14PzenNpVNAifNVJVt42NX2A4dICrCRwaJ46zGNXK7xgRAAky0xrslL2rPPsB6p1jZ9_8aRMrFrbzaCXJODye231FsuxRacelbi_iFs2O8mKE_y1VSm23JulxrALRlQXAbxrbO6--Jw");'>
+        </div>
+        <span class="absolute bottom-0 right-0 h-4 w-4 bg-slate-300 border-2 border-white rounded-full"></span>
+      </div>
+
+      <div class="flex-1">
+        <h2 class="font-bold text-lg text-slate-900">أحمد رمضان</h2>
+        <p class="text-xs text-slate-500 mb-1">قبل أسبوع</p>
+
+        <div class="flex items-center gap-1 text-amber-400 mb-2">
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+          <span class="material-symbols-outlined fill text-sm">star</span>
+        </div>
+
+        <p class="text-sm text-slate-600">مقال ممتاز ومفيد بشكل كبير.</p>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- زر كتابة مراجعة -->
+<button onclick="window.location.href='write_review_ar.html'"
+  class="fixed bottom-24 right-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#470d9d] to-[#907ffc] text-white shadow-lg">
+  <span class="material-symbols-outlined text-4xl">edit</span>
+</button>
+
+<!-- ✨ القائمة السفلية الجديدة (مطابقة للصورة) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#0c0c22] shadow-[0_-2px_10px_rgba(0,0,0,0.25)]">
+  <div class="flex items-center justify-around h-20">
+
+    <a href="home_ar.html" class="flex flex-col items-center text-white/70 hover:text-white w-1/5">
+      <span class="material-symbols-outlined text-3xl">home</span>
+      <span class="text-xs mt-1">الرئيسية</span>
+    </a>
+
+    <a href="news_ar.html" class="flex flex-col items-center text-white/70 hover:text-white w-1/5">
+      <span class="material-symbols-outlined text-3xl">article</span>
+      <span class="text-xs mt-1">الأخبار</span>
+    </a>
+
+    <a href="search_ar.html" class="flex flex-col items-center text-white/70 hover:text-white w-1/5">
+      <span class="material-symbols-outlined text-3xl">search</span>
+      <span class="text-xs mt-1">بحث</span>
+    </a>
+
+    <a href="favorite_ar.html" class="flex flex-col items-center text-white/70 hover:text-white w-1/5">
+      <span class="material-symbols-outlined text-3xl">favorite</span>
+      <span class="text-xs mt-1">المفضلة</span>
+    </a>
+
+    <a href="profile_ar.html" class="flex flex-col items-center text-white/70 hover:text-white w-1/5">
+      <span class="material-symbols-outlined text-3xl">person</span>
+      <span class="text-xs mt-1">الملف الشخصي</span>
+    </a>
+
+  </div>
+</nav>
+
+</div>
+
+<!-- JS -->
+<script>
+document.getElementById("filterBtn").addEventListener("click", () => {
+  document.getElementById("filterMenu").classList.toggle("hidden");
+  document.getElementById("sortMenu").classList.add("hidden");
+});
+
+document.getElementById("sortBtn").addEventListener("click", () => {
+  document.getElementById("sortMenu").classList.toggle("hidden");
+  document.getElementById("filterMenu").classList.add("hidden");
+});
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("#filterBtn") && !e.target.closest("#filterMenu"))
+    document.getElementById("filterMenu").classList.add("hidden");
+
+  if (!e.target.closest("#sortBtn") && !e.target.closest("#sortMenu"))
+    document.getElementById("sortMenu").classList.add("hidden");
+});
+
+function applyFilter(type) {
+  alert("تم تطبيق التصفية: " + type);
+}
+
+function applySort(type) {
+  alert("تم الفرز: " + (type === "asc" ? "الأحدث أولاً" : "الأقدم أولاً"));
+}
+</script>
+
+</body>
+</html>

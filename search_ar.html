@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Advanced Filters - Doctors Directory</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<style type="text/tailwindcss">
+:root {
+    --purple-start: #470d9d;
+    --purple-end: #907ffc;
+    --purple-accent: #6d28d9;
+}
+
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--purple-accent);
+    border-radius: 9999px;
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--purple-accent);
+}
+.custom-range::-moz-range-thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--purple-accent);
+    border-radius: 9999px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--purple-accent);
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background-color: var(--purple-accent);
+    border-color: var(--purple-accent);
+}
+
+.hide-arrow {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* زر التخصص عند التفعيل */
+.chip-active {
+    background: var(--purple-accent) !important;
+    color: white !important;
+}
+
+.specialty-btn {
+    white-space: nowrap;
+    line-height: 1;
+}
+</style>
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ["Cairo", "sans-serif"],
+            },
+        },
+    },
+};
+</script>
+
+</head>
+
+<body class="bg-gradient-to-b from-[var(--purple-start)] to-[var(--purple-end)] font-sans min-h-screen">
+
+<!-- الحاوية الأساسية المتوافقة -->
+<div class="w-full max-w-2xl mx-auto p-4 flex flex-col min-h-screen">
+
+<!-- Header -->
+<header class="flex items-center justify-between text-white py-3 mb-4">
+    <button onclick="window.history.back();" class="p-2">
+        <span class="material-icons">arrow_forward_ios</span>
+    </button>
+    <h1 class="text-xl font-bold">فلاتر متقدمة</h1>
+    <button onclick="location.reload()" class="p-2 text-white font-medium text-base">إعادة تعيين</button>
+</header>
+
+<!-- المحتوى -->
+<main class="flex-grow space-y-4 pb-24">
+
+<!-- البحث -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <div class="relative">
+        <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+        <input type="text"
+            class="w-full pl-10 pr-4 py-2.5 bg-gray-100 text-gray-800 border-transparent rounded-full focus:ring-2 focus:ring-[var(--purple-accent)]"
+            placeholder="البحث بالاسم، التخصص" />
+    </div>
+</div>
+
+<!-- التخصصات -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">التخصصات</h2>
+
+    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-2 px-2 whitespace-nowrap">
+        <button class="specialty-btn px-4 py-2 rounded-full text-sm font-medium chip-active">الكل</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الباطنة العامة</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجراحة العامة</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">النساء والتوليد</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">القلب والأوعية</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجلدية</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأنف والأذن</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">المخ والأعصاب</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">المسالك البولية</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأسنان</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الصدر والحساسية</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الكلى</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الطب النفسي</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأورام</button>
+        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجهاز الهضمي والكبد</button>
+    </div>
+</div>
+
+<!-- الموقع -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">الموقع</h2>
+
+    <div class="relative">
+        <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">location_on</span>
+
+        <select class="hide-arrow w-full pl-10 pr-4 py-3 bg-gray-100 border-gray-300 rounded-xl text-gray-800"
+            onchange="handleLocationChange(this)">
+            <option>Location</option>
+            <option value="another">موقع آخر</option>
+        </select>
+    </div>
+</div>
+
+<!-- الدرجة العلمية -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">الدرجة العلمية</h2>
+
+    <div class="grid grid-cols-2 gap-x-4 gap-y-3">
+        <label class="flex items-center gap-2">
+            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300" checked />
+            <span>أخصائي</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300" />
+            <span>استشاري</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300" checked />
+            <span>أستاذ دكتور</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="checkbox" class="h-5 w-5 rounded-md border-gray-300" />
+            <span>ماجستير</span>
+        </label>
+    </div>
+</div>
+
+<!-- النوع -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">النوع</h2>
+
+    <div class="flex items-center justify-between px-3">
+        <label class="flex items-center gap-2">
+            <input type="radio" name="gender" class="h-5 w-5 border-gray-300" />
+            <span>دكتور</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="radio" name="gender" class="h-5 w-5 border-gray-300" />
+            <span>دكتورة</span>
+        </label>
+
+        <label class="flex items-center gap-2">
+            <input type="radio" name="gender" checked class="h-5 w-5 border-gray-300" />
+            <span>كلاهما</span>
+        </label>
+    </div>
+</div>
+
+<!-- السعر -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <p class="text-sm font-semibold mb-2">سعر الكشف</p>
+
+    <div class="flex justify-between text-xs text-gray-700 mb-1">
+        <span id="priceMin">50 مصري</span>
+        <span id="priceMax">1000 مصري</span>
+    </div>
+
+    <input id="priceSlider" type="range" min="50" max="1000" value="500" class="w-full custom-range" />
+</div>
+
+<!-- التقييم -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <h2 class="text-lg font-semibold text-gray-900 mb-3">التقييم</h2>
+
+    <div class="grid grid-cols-4 gap-2 text-center">
+        <label class="flex items-center justify-center gap-2">
+            <input type="radio" name="rating" class="h-5 w-5 border-gray-300" />
+            <span class="text-sm">الكل</span>
+        </label>
+
+        <label class="flex items-center justify-center gap-2">
+            <input type="radio" name="rating" checked class="h-5 w-5 border-gray-300" />
+            <span class="text-sm">4.5+</span>
+        </label>
+
+        <label class="flex items-center justify-center gap-2">
+            <input type="radio" name="rating" class="h-5 w-5 border-gray-300" />
+            <span class="text-sm">4.0+</span>
+        </label>
+
+        <label class="flex items-center justify-center gap-2">
+            <input type="radio" name="rating" class="h-5 w-5 border-gray-300" />
+            <span class="text-sm">3.5+</span>
+        </label>
+    </div>
+</div>
+
+<!-- متاح اليوم -->
+<div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+    <div class="flex items-center justify-between">
+        <span class="text-lg font-semibold text-gray-900">متاح اليوم</span>
+
+        <label class="inline-flex items-center cursor-pointer relative">
+            <input id="availability-toggle" type="checkbox" class="sr-only peer" />
+            <div class="w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-[var(--purple-accent)]
+                after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+                after:w-5 after:h-5 after:bg-white after:rounded-full after:transition-all
+                peer-checked:after:translate-x-full">
+            </div>
+        </label>
+    </div>
+</div>
+
+</main>
+
+<!-- زر البحث -->
+<footer class="sticky bottom-0 py-4 bg-gradient-to-t from-[var(--purple-end)] to-transparent -mx-4 px-4">
+    <button onclick="window.location.href='Search_results_ar.html'"
+        class="w-full h-12 flex items-center justify-center rounded-full bg-[#470d9d] text-white font-bold hover:opacity-70">
+        إجراء البحث
+    </button>
+</footer>
+
+</div>
+
+<script>
+// slider update
+const slider = document.getElementById("priceSlider");
+const priceMin = document.getElementById("priceMin");
+const priceMax = document.getElementById("priceMax");
+
+function updatePrice() {
+    priceMax.textContent = slider.value + " مصري";
+}
+slider.addEventListener("input", updatePrice);
+updatePrice();
+
+function handleLocationChange(el) {
+    if (el.value === "another") window.location.href = "current_location_ar.html";
+}
+
+/* 🔥 تفعيل التخصصات */
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".specialty-btn");
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            // إزالة التفعيل من الجميع
+            buttons.forEach(b => {
+                b.classList.remove("chip-active");
+                b.classList.remove("text-white");
+                b.classList.add("bg-gray-100", "text-gray-600");
+            });
+
+            // تفعيل الضغط
+            btn.classList.add("chip-active");
+            btn.classList.add("text-white");
+            btn.classList.remove("bg-gray-100", "text-gray-600");
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const select = document.querySelector("select.hide-arrow");
+    if (!select) return;
+
+    // استرجاع الموقع المخزن
+    let savedLocation = localStorage.getItem("userLocation");
+
+    if (savedLocation && select.options.length > 0) {
+        select.options[0].textContent = savedLocation; // تعديل النص المعروض
+    }
+});
+
+// عند العودة من صفحة تحديد الموقع
+function handleLocationChange(el) {
+    if (el.value === "another") {
+        sessionStorage.setItem("forceLocationReload", "1");
+        window.location.href = "current_location_ar.html";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (sessionStorage.getItem("forceLocationReload") === "1") {
+        sessionStorage.removeItem("forceLocationReload");
+        location.reload(); // تحديث الصفحة لإظهار الموقع الجديد
+    }
+});
+
+</script>
+
+</body>
+</html>

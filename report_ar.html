@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>الإبلاغ عن بيانات غير صحيحة</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+<style>
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* --- تعديل السهم لليسار --- */
+.form-select {
+    appearance: none !important;          /* تعطيل الشكل الافتراضي */
+    -webkit-appearance: none !important;  /* للكروم */
+    -moz-appearance: none !important;     /* للفايرفوكس */
+
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M14 8l-4 4-4-4'/%3e%3c/svg%3e") !important;
+
+    background-position: left 1rem center !important; /* ← السهم في اليسار */
+    background-repeat: no-repeat !important;
+    background-size: 1.5em !important;
+
+    padding-left: 40px !important; /* مساحة للسهم في اليسار */
+    padding-right: 1rem !important;
+}
+.tag-item {
+    padding: 0.5rem 1rem;
+    background: rgba(224, 224, 224, 0.5);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    transition: 0.2s;
+}
+
+.tag-item:hover {
+    background: rgba(71, 13, 157, 0.1);
+}
+
+.tag-item.active {
+    background: #470d9d;        /* لون الـ Active */
+    color: #fff;
+    font-weight: bold;
+}
+
+
+body {
+  min-height: max(884px, 100dvh);
+  font-family: 'Cairo', sans-serif;
+}
+</style>
+
+<script>
+function triggerFileUpload() {
+    document.getElementById('file-upload').click();
+}
+</script>
+
+</head>
+<body>
+
+<div class="relative flex min-h-screen w-full flex-col bg-gradient-to-b from-[#470d9d] to-[#907ffc] overflow-x-hidden">
+
+<header class="flex w-full flex-col items-center px-6 pt-12 pb-6 text-center text-white">
+    <h1 class="text-2xl font-bold">الإبلاغ عن بيانات غير صحيحة</h1>
+    <p class="mt-1 text-base opacity-90">ساعدنا في الحفاظ على دقة معلومات الأطباء.</p>
+</header>
+
+<main class="flex flex-1 flex-col items-center px-4">
+<div class="w-full max-w-lg flex-1 rounded-t-3xl bg-white p-6 shadow-lg md:rounded-3xl">
+
+<div class="flex flex-col space-y-6 text-right">
+
+<!-- نوع المشكلة -->
+<div>
+<label class="text-[#333] mb-2 block font-medium" for="issue-type">نوع المشكلة</label>
+<div class="relative">
+<select id="issue-type"
+    class="form-select w-full appearance-none rounded-xl border border-[#E0E0E0] p-4 text-[#333] focus:border-[#470d9d] focus:ring-[#470d9d]/30">
+    <option>اختر نوع المشكلة</option>
+    <option value="contact">معلومات الاتصال</option>
+    <option value="specialty">التخصص</option>
+    <option value="address">العنوان</option>
+    <option value="photo">الصورة</option>
+    <option value="other">أخرى</option>
+</select>
+</div>
+</div>
+
+<!-- ما هو الخطأ -->
+<div>
+<p class="text-[#333] mb-2 font-medium">ما هو الخطأ بالضبط؟</p>
+
+<div id="issue-tags" class="flex flex-wrap gap-3">
+
+    <div class="tag-item">رقم هاتف خاطئ</div>
+    <div class="tag-item">عنوان غير صحيح</div>
+    <div class="tag-item">تخصص خاطئ</div>
+    <div class="tag-item">صورة قديمة</div>
+
+</div>
+</div>
+
+<!-- الوصف -->
+<div>
+<label class="text-[#333] mb-2 block font-medium" for="description">الوصف</label>
+<textarea id="description" rows="4"
+class="w-full resize-none rounded-xl border border-[#E0E0E0] p-4 text-[#333] focus:border-[#470d9d] focus:ring-[#470d9d]/30"
+placeholder="يرجى تقديم المزيد من التفاصيل..."></textarea>
+</div>
+
+<!-- إرفاق دليل -->
+<div>
+<label class="text-[#333] mb-2 block font-medium">إرفاق دليل (اختياري)</label>
+<div id="ppp" class="flex w-full cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#E0E0E0] bg-gray-50 p-6 text-center hover:bg-gray-100" onclick="triggerFileUpload()">
+<span class="material-symbols-outlined text-4xl text-gray-400">upload_file</span>
+<p class="mt-2 text-sm text-gray-500">
+<span class="font-semibold text-[#470d9d]">انقر لتحميل</span> أو اسحب وأفلت
+</p>
+<p class="text-xs text-gray-500">SVG، PNG، JPG أو GIF (الحد الأقصى: 800x400)</p>
+<input type="file" id="file-upload" style="display: none;" accept=".svg, .png, .jpg, .gif"/>
+</div>
+</div>
+
+<!-- معلوماتك -->
+<div class="space-y-4">
+<h3 class="text-[#333] font-bold">معلوماتك (اختياري)</h3>
+
+<div>
+<label class="text-[#333] mb-1 block text-sm font-medium" for="full-name">الاسم الكامل</label>
+<input id="full-name" type="text" placeholder="اسمك"
+class="w-full rounded-xl border border-[#E0E0E0] p-4 text-[#333] focus:border-[#470d9d] focus:ring-[#470d9d]/30">
+</div>
+
+<div>
+<label class="text-[#333] mb-1 block text-sm font-medium" for="email">البريد الإلكتروني</label>
+<input id="email" type="email" placeholder="you@example.com"
+class="w-full rounded-xl border border-[#E0E0E0] p-4 text-[#333] focus:border-[#470d9d] focus:ring-[#470d9d]/30">
+</div>
+</div>
+
+<!-- تأكيد -->
+<div class="flex items-start ">
+<input id="confirmation" type="checkbox"
+class="h-5 w-5 rounded border-gray-300 text-[#470d9d] focus:ring-[#470d9d] ml-2">
+<label for="confirmation" class="text-gray-600 text-sm">أؤكد أن المعلومات التي قدمتها دقيقة.</label>
+</div>
+
+<!-- الإجراء -->
+<div class="flex flex-col items-center gap-4 pt-4">
+
+<button onclick="window.location.href='report_submitted_ar.html'"
+class="w-full rounded-xl bg-[#470d9d] py-4 text-white font-bold hover:bg-opacity-90">
+تقديم التقرير
+</button>
+
+<button onclick="window.location.href='doctor_profile_ar.html'"
+class="text-gray-500 hover:text-[#470d9d]">
+إلغاء
+</button>
+
+</div>
+
+</div>
+</div>
+</main>
+
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".tag-item");
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+
+            // إزالة Active من الجميع
+            items.forEach(i => i.classList.remove("active"));
+
+            // تفعيل العنصر الذي تم الضغط عليه
+            item.classList.add("active");
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>

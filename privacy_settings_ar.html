@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>إعدادات الخصوصية</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Cairo', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: "#6A1B9A",
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', 'Roboto', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-on {
+            justify-content: flex-end;
+            background-color: #6A1B9A; /* اللون عند التشغيل */
+        }
+        .toggle-off {
+            background-color: #e5e7eb; /* اللون عند الإيقاف */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#470d9d] to-[#907ffc]">
+<div class="relative flex h-auto min-h-screen w-full flex-col font-display group/design-root">
+    <div class="flex items-center p-4 pb-2 justify-center">
+        <h2 class="text-white text-xl font-bold leading-tight tracking-[-0.015em] text-center">إعدادات الخصوصية</h2>
+    </div>
+    <div class="px-4 py-2">
+        <div class="bg-white rounded-xl shadow-lg p-4">
+            <p class="text-zinc-600 text-sm font-normal leading-relaxed text-center">
+                قم بإدارة بياناتك وتفضيلات الخصوصية للتحكم في كيفية استخدام معلوماتك عبر التطبيق.
+            </p>
+        </div>
+    </div>
+    <div class="h-4"></div>
+    <div class="flex flex-col gap-3 px-4">
+        <div class="flex items-center gap-4 bg-white px-4 py-3 min-h-14 justify-between rounded-xl shadow-md">
+            <div class="flex items-center gap-4">
+                <p class="text-[#131118] text-base font-normal leading-normal flex-1 truncate text-right">السماح بالوصول إلى الموقع</p>
+            </div>
+            <div class="shrink-0">
+                <label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none toggle-off p-0.5" id="locationAccessToggle">
+                    <div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+                    <input checked="" class="invisible absolute" type="checkbox"/>
+                </label>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white px-4 py-3 min-h-14 justify-between rounded-xl shadow-md">
+            <div class="flex items-center gap-4">
+                <p class="text-[#131118] text-base font-normal leading-normal flex-1 truncate text-right">إظهار ملفي الشخصي بشكل عام</p>
+            </div>
+            <div class="shrink-0">
+                <label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none toggle-off p-0.5" id="profileVisibilityToggle">
+                    <div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+                    <input class="invisible absolute" type="checkbox"/>
+                </label>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white px-4 py-3 min-h-14 justify-between rounded-xl shadow-md">
+            <div class="flex items-center gap-4">
+                <p class="text-[#131118] text-base font-normal leading-normal flex-1 truncate text-right">تلقي إشعارات النصائح الصحية</p>
+            </div>
+            <div class="shrink-0">
+                <label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none toggle-off p-0.5" id="healthTipsToggle">
+                    <div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+                    <input checked="" class="invisible absolute" type="checkbox"/>
+                </label>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white px-4 py-3 min-h-14 justify-between rounded-xl shadow-md">
+            <div class="flex items-center gap-4">
+                <p class="text-[#131118] text-base font-normal leading-normal flex-1 truncate text-right">حفظ سجل البحث</p>
+            </div>
+            <div class="shrink-0">
+                <label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none toggle-off p-0.5" id="searchHistoryToggle">
+                    <div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+                    <input class="invisible absolute" type="checkbox"/>
+                </label>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 bg-white px-4 py-3 min-h-14 justify-between rounded-xl shadow-md">
+            <div class="flex items-center gap-4">
+                <p class="text-[#131118] text-base font-normal leading-normal flex-1 truncate text-right">السماح بالتوصيات المخصصة</p>
+            </div>
+            <div class="shrink-0">
+                <label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none toggle-off p-0.5" id="customRecommendationsToggle">
+                    <div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+                    <input class="invisible absolute" type="checkbox"/>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="h-6"></div>
+    <div class="px-4">
+        <div class="w-full border-t border-white/30"></div>
+        <div class="pt-6 text-center">
+            <a class="text-white text-base font-normal underline" href="privacy_policy_ar.html">عرض سياسة الخصوصية الكاملة</a>
+        </div>
+    </div>
+    <div class="flex-grow"></div>
+    <div class="p-4 pt-8">
+        <button 
+            onclick="window.location.href='settings_ar.html'"
+            class="w-full bg-primary text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+            حفظ التغييرات
+        </button>
+    </div>
+</div>
+
+<script>
+    const toggleElements = document.querySelectorAll('label');
+
+    toggleElements.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            const input = toggle.querySelector("input");
+            input.checked = !input.checked;
+
+            // تغيير الأنماط بناءً على حالة الزر
+            if (input.checked) {
+                toggle.classList.remove("toggle-off");
+                toggle.classList.add("toggle-on");
+            } else {
+                toggle.classList.remove("toggle-on");
+                toggle.classList.add("toggle-off");
+            }
+        });
+    });
+</script>
+</body>
+</html>

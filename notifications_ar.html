@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>الإشعارات</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+    .material-symbols-outlined.filled {
+      font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+      font-family: 'Cairo', sans-serif;
+      direction: rtl; /* تغيير اتجاه الكتابة إلى اليمين */
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#3B82F6", // blue-500
+            "background-light": "#F8FAFC", // slate-50
+            "background-dark": "#1E293B", // slate-800
+          },
+          fontFamily: {
+            display: ["Cairo", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.75rem", // 12px
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="font-display">
+<div class="max-w-sm mx-auto bg-gradient-to-b from-[#470d9d] to-[#907ffc] min-h-screen flex flex-col">
+  <header class="sticky top-0 bg-transparent py-4 px-4 flex items-center justify-between">
+    <button 
+      onclick="window.location.href='home_ar.html'"
+      class="text-white">
+      <span class="material-symbols-outlined text-3xl">arrow_back_ios_new</span>
+    </button>
+    <h1 class="text-xl font-bold text-white flex-grow text-center">الإشعارات</h1>
+    <div class="w-8"></div>
+  </header>
+  <main class="flex-grow px-4 pb-24">
+    <div class="space-y-4">
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-blue-500">calendar_month</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تذكير بالموعد</h2>
+            <p class="text-xs text-slate-500">10:00 صباحًا</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">موعدك مع الدكتورة جين دو مقرر في الساعة 11:00 صباحًا اليوم.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-blue-500">star</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تحديث المراجعة</h2>
+            <p class="text-xs text-slate-500">أمس</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">رد الدكتور جون سميث على مراجعتك.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+          <span class="material-symbols-outlined text-blue-500">person_add</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تم إضافة طبيب جديد</h2>
+            <p class="text-xs text-slate-500">منذ يومين</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">تم إضافة طبيب أطفال جديد، الدكتورة إميلي وايت، وهي متاحة الآن بالقرب منك.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="material-symbols-outlined text-slate-500">event_available</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تذكير بالموعد</h2>
+            <p class="text-xs text-slate-500">منذ 3 أيام</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">تم الانتهاء من موعدك مع الدكتور أليكس راي.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="material-symbols-outlined text-slate-500">grade</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تحديث المراجعة</h2>
+            <p class="text-xs text-slate-500">منذ 4 أيام</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">لقد تركت مراجعة 5 نجوم للدكتورة سارة براون.</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-lg p-4 flex items-start space-x-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center">
+          <span class="material-symbols-outlined text-slate-500">person_add</span>
+        </div>
+        <div class="flex-grow">
+          <div class="flex justify-between items-baseline">
+            <h2 class="font-bold text-slate-900">تم إضافة طبيب جديد</h2>
+            <p class="text-xs text-slate-500">منذ 5 أيام</p>
+          </div>
+          <p class="text-sm text-slate-600 mt-1">انضم الدكتور مايكل تشين، طبيب الأمراض الجلدية، إلى شبكتنا.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- التنقل السفلي -->
+  <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-sm bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.1)] rounded-t-2xl">
+    <div class="flex justify-around items-center h-16">
+      <a href="home_ar.html" class="flex flex-col items-center justify-center text-[#470d9d] font-semibold">
+        <span class="material-symbols-outlined filled">home</span>
+        <span class="text-xs mt-1">الرئيسية</span>
+      </a>
+      <a href="news_ar.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#470d9d]">
+        <span class="material-symbols-outlined">article</span>
+        <span class="text-xs mt-1">الأخبار</span>
+      </a>
+      <a href="search_ar.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#470d9d]">
+        <span class="material-symbols-outlined">search</span>
+        <span class="text-xs mt-1">بحث</span>
+      </a>
+      <a href="favorite_ar.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#470d9d]">
+        <span class="material-symbols-outlined">favorite_border</span>
+        <span class="text-xs mt-1">المفضلة</span>
+      </a>
+      <a href="profile_ar.html" class="flex flex-col items-center justify-center text-gray-400 hover:text-[#470d9d]">
+        <span class="material-symbols-outlined">person</span>
+        <span class="text-xs mt-1">الملف الشخصي</span>
+      </a>
+    </div>
+  </nav>
+</div>
+</body>
+</html>

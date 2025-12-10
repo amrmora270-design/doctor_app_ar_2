@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="dark" lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>كتابة تقييم</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6D44FD",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#171022",
+                    },
+                    fontFamily: {
+                        "display": ["Cairo"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.25rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    .material-symbols-outlined {
+        margin-left: 0.5rem;
+        margin-right: 0 !important;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+</style>
+</head>
+<body class="bg-gradient-to-b from-[#470d9d] to-[#907ffc] font-display">
+<div class="relative flex min-h-screen w-full flex-col p-6">
+<!-- القسم العلوي -->
+<div class="text-center pt-4 pb-8">
+<h1 class="text-white text-3xl font-bold">اكتب تقييمك</h1>
+<p class="text-white text-base font-normal leading-normal pt-2">شارك تجربتك مع هذا الطبيب</p>
+</div>
+
+<!-- البطاقة الرئيسية -->
+<div class="flex flex-1 flex-col rounded-xl bg-white p-6 shadow-lg">
+<!-- ملف الطبيب -->
+<div class="flex items-center gap-4 border-b border-gray-200 pb-6 ">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-16 w-16 shrink-0" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrj-RTYbuJTbkGcPQG8fRNi53f50-tVyiKDlks1DJKRj7m-dYZlccqXzC9XIcp2DsoaZjP00sbc6ICtYXdrNZTfFDKrdETu1TmWGNnarDJsEFkqw-J2d2kSQvoQMMni-0T4vLy_j60MLhYUJNfbm41yMA3Pk6ShyOkbp5yUvlFomjuR3PDlR5CdlpyE-T_TWzpASIG-Nx79wUsFj5WDbBiPmh0f2xPjkh8njohWBXb2U5swANNH-3tocNt03G8j3WfbUHscUL2btU");'></div>
+<div class="flex flex-col justify-center text-right">
+<p class="text-gray-900 text-lg font-medium leading-normal">د. إيفلين ريد</p>
+<p class="text-gray-500 text-sm font-normal leading-normal">أخصائية قلب</p>
+</div>
+</div>
+
+<!-- تقييم النجوم -->
+<div class="flex flex-col items-center py-6">
+<p class="text-gray-600 text-base font-normal leading-normal pb-4">اضغط على النجم للتقييم</p>
+<div id="ratingStars" class="flex items-center justify-center gap-3">
+<span class="material-symbols-outlined star text-4xl cursor-pointer text-gray-300" data-value="1">star</span>
+<span class="material-symbols-outlined star text-4xl cursor-pointer text-gray-300" data-value="2">star</span>
+<span class="material-symbols-outlined star text-4xl cursor-pointer text-gray-300" data-value="3">star</span>
+<span class="material-symbols-outlined star text-4xl cursor-pointer text-gray-300" data-value="4">star</span>
+<span class="material-symbols-outlined star text-4xl cursor-pointer text-gray-300" data-value="5">star</span>
+</div>
+</div>
+
+<!-- منطقة النص -->
+<div class="pb-6">
+<textarea class="w-full rounded-lg border-none bg-[#F5F5F7] p-4 text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-primary text-right" placeholder="اكتب ملاحظاتك هنا..." rows="5"></textarea>
+</div>
+
+<!-- خيار النشر المجهول -->
+<div class="flex items-center justify-between ">
+<p class="text-gray-800 text-base font-medium">النشر بشكل مجهول</p>
+<div class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-gray-200 p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary" id="anonymousToggle">
+<div class="h-full w-[27px] rounded-full bg-white transition-transform" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px, rgba(0, 0, 0, 0.06) 0px 3px 1px;"></div>
+<input type="checkbox" class="invisible absolute" />
+</div>
+</div>
+
+<!-- أزرار التحكم -->
+<div class="mt-8 flex flex-col items-center gap-4">
+<button onclick="window.location.href='Review_Submitted_Successfully_ar.html'" 
+class="w-full rounded-lg bg-primary py-4 text-center text-base font-bold text-white shadow-md hover:bg-primary/90">
+إرسال التقييم
+</button>
+<a class="text-primary text-base font-medium hover:underline" href="user_reviews_ar.html">إلغاء</a>
+</div>
+</div>
+</div>
+
+<script>
+    const stars = document.querySelectorAll("#ratingStars .star");
+    let currentRating = 0;
+
+    stars.forEach(star => {
+        star.addEventListener("click", () => {
+            currentRating = star.dataset.value;
+            updateStars();
+        });
+    });
+
+    function updateStars() {
+        stars.forEach(star => {
+            if (star.dataset.value <= currentRating) {
+                star.classList.add("text-[#FFC107]");
+                star.classList.remove("text-gray-300");
+            } else {
+                star.classList.add("text-gray-300");
+                star.classList.remove("text-[#FFC107]");
+            }
+        });
+    }
+
+    const anonymousToggle = document.getElementById("anonymousToggle");
+    const anonymousCheckbox = anonymousToggle.querySelector("input");
+
+    anonymousToggle.addEventListener("click", () => {
+        anonymousCheckbox.checked = !anonymousCheckbox.checked;
+        anonymousToggle.classList.toggle("has-[:checked]:justify-end");
+        anonymousToggle.classList.toggle("has-[:checked]:bg-primary");
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>الملف الطبي للطبيب</title>
+
+<!-- Cairo font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+<script>
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ["Cairo", "sans-serif"],
+            },
+            colors: {
+                'brand-purple-start': '#470d9d',
+                'brand-purple-end': '#907ffc',
+            }
+        },
+    },
+};
+</script>
+
+<style>
+    body { min-height: max(884px, 100dvh); }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+        margin-left: 0.5rem;
+        margin-right: 0 !important;
+    }
+
+    .material-symbols-outlined.filled {
+        font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+..classic-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(#6b6b6b, #4a4a4a);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.25);
+  transition: 0.2s;
+}
+
+.classic-btn:hover {
+  opacity: 0.9;
+}
+.schedule-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.schedule-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* زر أساسي */
+
+.schedule-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* الأعمدة تصطف بجانب بعض مركزة */
+.schedule-grid {
+  display: flex;
+  justify-content: center;
+  gap: 12px; /* مسافة بين الأعمدة */
+  align-items: flex-start;
+}
+
+/* كل عمود عمودي */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* مسافة بين الأزرار داخل العمود */
+  align-items: center; /* يوسّط الأزرار داخل العمود */
+}
+
+/* زر موحّد الحجم */
+.btn {
+  width: 90px;      /* عرض ثابت لكل الأزرار */
+  height: 25px;      /* ارتفاع ثابت لكل الأزرار */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;   /* حشوة أفقية فقط */
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 14px;
+  text-align: center;
+
+  /* نص سطر واحد مع قص إن احتاج */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+
+/* نطبق نفس اللون الأزرق الطبي على كل الأزرار */
+.blue {
+  background: linear-gradient(180deg, #2b8de6 0%, #1f73c9 100%); /* تدرج أزرق طبي */
+}
+
+/* لو محتاج تأثير hover بسيط */
+.btn:hover {
+  transform: translateY(-3px);
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.22);
+}
+
+/* استجابة الموبايل: تتحول الأعمدة لعمود واحد */
+@media (max-width: 640px) {
+  .schedule-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .btn {
+    width: 88%;       /* تقليل العرض على الشاشات الضيقة */
+    max-width: 360px;
+    height: 60px;
+    font-size: 17px;
+  }
+}
+#day-times,
+#am-times,
+#pm-times {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+</style>
+</head>
+
+<body class="bg-gradient-to-b from-brand-purple-start to-brand-purple-end font-sans">
+<div class="max-w-4xl mx-auto px-4">
+
+ <!-- HEADER -->
+<header class="sticky top-0 z-10 py-4 px-4 flex items-center justify-between bg-brand-purple-start/80 backdrop-blur-sm relative">
+  <button onclick="history.back()" class="text-white flex size-10 items-center ">
+      <span class="material-symbols-outlined text-3xl " style="transform: scaleX(-1);">arrow_back_ios_new</span>
+  </button>
+  <h1 class="text-xl font-semibold text-white">ملف الطبيب</h1>
+  <button onclick="window.location.href='report.html';" class="text-white flex items-center">
+      <span class="material-icons">flag</span>
+  </button>
+</header>
+
+<main class="pb-24">
+
+  <!-- PROFILE -->
+  <section class="text-center pt-6 pb-8 px-4">
+    <div class="relative inline-block">
+      <img class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-lg"
+           src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1nAg8QTbjqUE64HNInSP-6znMR4Kt-m8yRT6n25pPU8e5THbtj8ewe-75SbI5s4FUPYYr3BlszsW5XD444Gy4oCQs1rytRXQwHkzM0FyNPqACQB7tynYngaMlyKU-JBRSQmkr12g1_EOT6YVhhNGaWgA6rQtMjus_0ajvaFUDScwX3JOTHsNovs1MXNDQZ-vTpOEie9_nul5rlW_rDOwiLq5oLRqPTvr0ErKjFh2q6Q5zWsf5VKVnvNY04tu4XeyN-KGtbPiqbHE"/>
+      <div class="absolute bottom-1 left-1 bg-green-500 rounded-full h-6 w-6 flex items-center justify-center border-2 border-white">
+        <span class="material-icons text-white text-base">check</span>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold mt-4 text-white">د. إيثان كارتر</h2>
+    <p class="text-white/80 mt-1">MBBS, DOMS, MS - طب العيون</p>
+    <p class="text-white/80 mt-2">أخصائي قلب</p>
+    <p class="text-white/80">الفيوم / قصر الباسل</p>
+  </section>
+
+  <div class="px-4 space-y-6">
+
+    <!-- BIO -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-3">نبذة</h3>
+      <p class="text-gray-600 text-sm leading-relaxed">
+        د. إيثان كارتر طبيب قلب ملتزم ومتعاطف لديه أكثر من خمس سنوات من الخبرة...
+      </p>
+    </section>
+
+    <!-- CLINICS -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">العيادات</h3>
+
+      <div class="space-y-4">
+        <div class="p-4 rounded-lg bg-gray-50 border border-gray-200 cursor-pointer clinic-card"
+             data-phone="01005153236"
+             data-whatsapp="01005153236"
+             data-address="قصر الباسل  -  الفيوم  -  مصر"
+             data-map="https://www.google.com/maps?q=قصر+الباسل+الفيوم&hl=ar&z=14&output=embed"
+             data-day="السبت,الاثنين,الخميس"
+     data-am="09:00 → 11:30 ص,09:00 → 11:30 ص,09:00 → 11:30 ص"
+     data-pm="05:00 → 08:00 م,05:00 → 08:00 م,05:00 → 08:00 م"
+>
+          <p class="font-semibold text-gray-800">مستشفى المدينة العام</p>
+          <p class="text-sm text-gray-500 mt-1">قصر الباسل  -  الفيوم  -  مصر</p>
+        </div>
+
+        <div class="p-4 rounded-lg bg-gray-50 border border-gray-200 cursor-pointer clinic-card"
+             data-phone="01000000002"
+             data-whatsapp="01000000002"
+             data-address="الفيوم - المسلة"
+             data-map="https://www.google.com/maps?q=المسلة+الفيوم&hl=ar&z=14&output=embed"
+             data-day="الاحد,الثلاثاء,الاربعا"
+     data-am="09:00 → 11:30 ص,09:00 → 11:30 ص,09:00 → 11:30 ص"
+     data-pm="05:00 → 08:00 م,05:00 → 08:00 م,05:00 → 08:00 م"
+
+          <p class="font-semibold text-gray-800">مركز نبض القلب</p>
+          <p class="text-sm text-gray-500 mt-1">المسلة - الفيوم</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">التواصل</h3>
+
+      <div class="space-y-4">
+
+        <!-- PHONE -->
+        <a id="phone-link" href="tel:01005153236" class="flex items-center cursor-pointer active:scale-95 transition">
+          <div class="bg-purple-100 p-3 rounded-full ml-4">
+            <span class="material-icons text-brand-purple-start">phone</span>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">الهاتف</p>
+            <p id="phone-number" class="text-gray-800 font-medium">---</p>
+          </div>
+        </a>
+
+        <!-- WHATSAPP -->
+        <a id="whatsapp-link" target="_blank"
+           class="flex items-center cursor-pointer active:scale-95 transition">
+          <div class="bg-green-100 p-3 rounded-full ml-4">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-6 h-6 text-green-600 fill-current"
+                 viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.82 11.82 0 0 0 12 0a11.94 11.94 0 0 0-10.3 17.94L0 24l6.26-1.64A11.93 11.93 0 0 0 12 24a11.82 11.82 0 0 0 8.52-3.48A11.82 11.82 0 0 0 24 12a11.82 11.82 0 0 0-3.48-8.52zM12 21.43a9.42 9.42 0 0 1-4.8-1.31l-.34-.2-3.72.97 1-3.62-.22-.37A9.42 9.42 0 1 1 12 21.43zm5.19-6.9c-.28-.14-1.64-.81-1.89-.9s-.44-.14-.63.14-.72.9-.88 1.09-.33.21-.61.07a7.59 7.59 0 0 1-2.24-1.38 8.4 8.4 0 0 1-1.55-1.92c-.16-.27 0-.42.12-.56s.28-.33.42-.49a1.87 1.87 0 0 0 .28-.47.5.5 0 0 0-.02-.49c-.07-.14-.63-1.5-.86-2.06s-.45-.48-.63-.49H8.7a1.21 1.21 0 0 0-.86.4A3.52 3.52 0 0 0 7 10.47a6.15 6.15 0 0 0 1.29 3.25 14.2 14.2 0 0 0 5 4.19c.69.3 1.23.48 1.65.62a4 4 0 0 0 1.84.11 3.09 3.09 0 0 0 2.05-1.45 2.5 2.5 0 0 0 .17-1.45c-.07-.14-.25-.21-.53-.35z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">واتساب</p>
+            <p id="whatsapp-number" class="text-gray-800 font-medium">---</p>
+          </div>
+        </a>
+
+        <!-- ADDRESS -->
+        <div class="flex items-center">
+          <div class="bg-purple-100 p-3 rounded-full ml-4">
+            <span class="material-icons text-brand-purple-start">location_on</span>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">العنوان</p>
+            <p id="clinic-address" class="text-gray-800 font-medium">---</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">وسائل التواصل</h3>
+
+      <div class="space-y-4">
+
+        <!-- FACEBOOK -->
+        <div class="flex items-center py-4 border-b border-gray-100">
+          <svg class="w-6 h-6 text-brand-purple-start ml-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"></path>
+          </svg>
+          <a class="text-gray-800 text-sm flex-1" href="facebook.com/Spotly">facebook.com/Spotly</a>
+          <span class="material-icons text-gray-400 mr-4 cursor-pointer">content_copy</span>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="flex items-center py-4 border-b border-gray-100">
+          <svg class="w-6 h-6 text-brand-purple-start ml-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            <path d="M16 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" fill="currentColor" stroke="none"></path>
+          </svg>
+          <a class="text-gray-800 text-sm flex-1" href="Spotly.cardio">@Spotly.cardio</a>
+          <span class="material-icons text-gray-400 mr-4 cursor-pointer">content_copy</span>
+        </div>
+
+        <!-- YOUTUBE -->
+        <div class="flex items-center py-4 border-b border-gray-100">
+          <svg class="w-6 h-6 text-brand-purple-start ml-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+          </svg>
+          <a class="text-gray-800 text-sm flex-1" href="#">قناة د. إيثان كارتر</a>
+          <span class="material-icons text-gray-400 mr-4 cursor-pointer">content_copy</span>
+        </div>
+
+        <!-- WEBSITE -->
+        <div class="flex items-center py-4">
+          <svg class="w-6 h-6 text-brand-purple-start ml-4" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path>
+          </svg>
+          <a class="text-gray-800 text-sm flex-1" href="#">www.drethancarter.com</a>
+          <span class="material-icons text-gray-400 mr-4 cursor-pointer">content_copy</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-3">موقع العيادة</h3>
+
+      <iframe id="clinic-map"
+          class="rounded-lg w-full h-40"
+          src="https://www.google.com/maps?q=---&output=embed">
+      </iframe>
+    </section>
+
+
+
+<section id="schedule-section" class="bg-white rounded-2xl p-5 shadow-lg">
+  <h3 class="text-lg font-bold text-gray-800 mb-4">مواعيد العمل</h3>
+
+  <div class="schedule-container flex flex-wrap  text-right">
+    <div  class="schedule-grid">
+
+      <!-- العمود الأول - أيام الأسبوع -->
+      <div id="day-times" class="col">
+        <div class="btn blue">السبت</div>
+        <div class="btn blue">الأحد</div>
+        <div class="btn blue">الاثنين</div>
+        <div class="btn blue">الثلاثاء</div>
+        <div class="btn blue">الأربعاء</div>
+        <div class="btn blue">الخميس</div>
+        <div class="btn blue">الجمعة</div>
+      </div>
+
+      <!-- العمود الثاني - المواعيد الصباحية -->
+      <div id="am-times" class="col">
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+        <div class="btn blue">12:00 → 02:30</div>
+      </div>
+
+      <!-- العمود الثالث - المواعيد المسائية -->
+      <div id="pm-times" class="col">
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+        <div class="btn blue">05:30 → 07:00</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- REVIEWS -->
+    <section class="bg-white rounded-2xl p-5 shadow-lg">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">المراجعات</h3>
+
+      <div class="flex items-start gap-6 mb-6">
+        <div class="text-center">
+          <p class="text-5xl font-bold text-gray-900">4.8</p>
+          <div class="flex text-yellow-500 mt-1">
+            <span class="material-icons text-base">star</span>
+            <span class="material-icons text-base">star</span>
+            <span class="material-icons text-base">star</span>
+            <span class="material-icons text-base">star</span>
+            <span class="material-icons text-base">star_half</span>
+          </div>
+          <p class="text-xs text-gray-500 mt-1">125 مراجعة</p>
+        </div>
+
+        <div class="flex-1 space-y-1.5 text-xs text-gray-500">
+          <div class="flex items-center gap-2">
+            <span>5</span>
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 70%"></div>
+            </div>
+            <span>70%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>4</span>
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 20%"></div>
+            </div>
+            <span>20%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>3</span>
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 5%"></div>
+            </div>
+            <span>5%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>2</span>
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 3%"></div>
+            </div>
+            <span>3%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>1</span>
+            <div class="w-full bg-gray-200 rounded-full h-1.5">
+              <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 2%"></div>
+            </div>
+            <span>2%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <img alt="ليام هاربر" class="w-10 h-10 rounded-full object-cover"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxyngslhxxc8AzUKUf-aNJL_e7jwIVbg9soz7S2uJsxiAj4OFCQDY7Xshuxro-kj-wivv4NSmEpvqFHT23NS7WdMzuc6fOJRSwAJOCsgu8r90HLzAjpWoq9eJu970zVVeSfqvQGVhOx8yL3WoWmlXHwIfOy3duO3p2ur3GcoBUj6sSCZAeLnMvDUTM54FZRR46_KZIXh7JS7bHDy_S_Be4d82rWNn5myv93477g_g9UDptKGOUsqx2PMNUgqyXtZa4_09MrvT6wlc"/>
+          <div class="flex-1">
+            <div class="flex justify-between items-baseline">
+              <p class="font-semibold text-gray-800">ليام هاربر</p>
+              <p class="text-xs text-gray-400">منذ أسبوعين</p>
+            </div>
+            <div class="flex text-yellow-500 my-1">
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              الطبيب كارتر متميز جدًا في أمراض القلب...
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <img alt="أوليفيا بينيت" class="w-10 h-10 rounded-full object-cover"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVd6acx3dmbznTEoQFls5gt97r09SRL8_wgSRqG4NkTDLWh2tfa-NUX4cxtVxnN2DTgtKSQkmgFN27SBsyNJhreaX13AV10ofG1pE6aebo5B65AvH7HBT_pRYqy-xBeTFP25eaKCmjHJV_eryeW4EYTLqm7q32u5okEjLDZZRWpOzEXkFERchMty6UBE_WXRSptH51oYgVYhBsUnVdpaTk13mI1N8bJXW8yk6TJrHEDpKxmW8VDm7nQWnYOT5lnXOeDLdp6vNFhdQ"/>
+          <div class="flex-1">
+            <div class="flex justify-between items-baseline">
+              <p class="font-semibold text-gray-800">أوليفيا بينيت</p>
+              <p class="text-xs text-gray-400">منذ شهر</p>
+            </div>
+            <div class="flex text-yellow-500 my-1">
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm">star</span>
+              <span class="material-icons text-sm text-gray-300">star_border</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              الطبيب جيد لكن وقت الانتظار طويل...
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <button 
+          onclick="window.location.href='user_reviews_ar.html'"
+          class="w-full py-3 px-4 bg-purple-50 text-brand-purple-start font-semibold rounded-lg hover:bg-purple-100 transition-colors">
+          عرض كل المراجعات
+        </button>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- ⭐ NAV BAR نفس اللي في الصورة ⭐ -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-[#0d0d0d]/80 backdrop-blur-md border-t border-gray-700">
+    <div class="flex justify-around items-center h-20">
+
+        <!-- الرئيسية -->
+        <a href="home_ar.html" class="flex flex-col items-center text-gray-300 hover:text-white transition">
+            <span class="material-symbols-outlined text-3xl">home</span>
+            <span class="text-xs mt-1">الرئيسية</span>
+        </a>
+
+        <!-- الأخبار -->
+        <a href="news_ar.html" class="flex flex-col items-center text-gray-300 hover:text-white transition">
+            <span class="material-symbols-outlined text-3xl">article</span>
+            <span class="text-xs mt-1">الأخبار</span>
+        </a>
+
+        <!-- بحث -->
+        <a href="search_ar.html" class="flex flex-col items-center text-gray-300 hover:text-white transition">
+            <span class="material-symbols-outlined text-3xl">search</span>
+            <span class="text-xs mt-1">بحث</span>
+        </a>
+
+        <!-- المفضلة (Active) -->
+        <a href="favorite_ar.html" class="flex flex-col items-center text-white">
+            <span class="material-symbols-outlined filled text-3xl">favorite</span>
+            <span class="text-xs mt-1 font-bold">المفضلة</span>
+        </a>
+
+        <!-- الملف الشخصي -->
+        <a href="profile_ar.html" class="flex flex-col items-center text-gray-300 hover:text-white transition">
+            <span class="material-symbols-outlined text-3xl">person</span>
+            <span class="text-xs mt-1">الملف الشخصي</span>
+        </a>
+
+    </div>
+</nav>
+
+<!-- JS — CLINIC SWITCHING SYSTEM -->
+<script>
+const clinics = document.querySelectorAll(".clinic-card");
+
+const phoneNumber = document.getElementById("phone-number");
+const whatsappNumber = document.getElementById("whatsapp-number");
+const clinicAddress = document.getElementById("clinic-address");
+const clinicMap = document.getElementById("clinic-map");
+
+const phoneLink = document.getElementById("phone-link");
+const whatsappLink = document.getElementById("whatsapp-link");
+
+clinics.forEach(clinic => {
+  clinic.addEventListener("click", () => {
+
+    const phone = clinic.dataset.phone;
+    const whatsapp = clinic.dataset.whatsapp;
+    const address = clinic.dataset.address;
+    const map = clinic.dataset.map;
+
+    phoneNumber.textContent = phone;
+    whatsappNumber.textContent = whatsapp;
+    clinicAddress.textContent = address;
+
+    phoneLink.href = `tel:${phone}`;
+    whatsappLink.href = `https://wa.me/${whatsapp}`;
+
+    clinicMap.src = map;
+
+    clinics.forEach(c => c.classList.remove("border-brand-purple-start", "bg-purple-50"));
+    clinic.classList.add("border-brand-purple-start", "bg-purple-50");
+  });
+});
+const dayTimes = document.getElementById("day-times");
+const amTimes = document.getElementById("am-times");
+const pmTimes = document.getElementById("pm-times");
+
+document.querySelectorAll(".clinic-card").forEach(card => {
+  card.addEventListener("click", () => {
+
+    // جلب البيانات
+    const days = card.dataset.day?.split(",") || [];
+    const am   = card.dataset.am?.split(",")  || [];
+    const pm   = card.dataset.pm?.split(",")  || [];
+
+    // تفريغ الأعمدة
+    dayTimes.innerHTML = "";
+    amTimes.innerHTML = "";
+    pmTimes.innerHTML = "";
+
+    // تعبئة الأيام
+    days.forEach(d => {
+      if(d.trim() !== "") dayTimes.innerHTML += `<div class="btn blue">${d}</div>`;
+    });
+
+    // تعبئة مواعيد AM
+    am.forEach(a => {
+      if(a.trim() !== "") amTimes.innerHTML += `<div class="btn blue">${a}</div>`;
+    });
+
+    // تعبئة مواعيد PM
+    pm.forEach(p => {
+      if(p.trim() !== "") pmTimes.innerHTML += `<div class="btn blue">${p}</div>`;
+    });
+
+    // إظهار الأعمدة (فقط)
+    dayTimes.style.display = "flex";
+    amTimes.style.display = "flex";
+    pmTimes.style.display = "flex";
+  });
+});
+</script>
+
+</div>
+</body>
+</html>

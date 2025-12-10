@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>تم إنشاء الحساب بنجاح</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+        }
+        .material-symbols-outlined {
+            margin-left: 0.5rem;
+            margin-right: 0 !important;
+        }
+         .item-container {
+            justify-content: flex-start;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#470d9d] to-[#907ffc]">
+    <div class="relative flex h-auto min-h-screen w-full flex-col justify-between">
+        <main class="flex w-full grow flex-col items-center justify-center p-6 text-center">
+            <!-- أيقونة النجاح -->
+            <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-white shadow-lg">
+                <span class="material-symbols-outlined text-5xl text-[#470d9d]">check_circle</span>
+            </div>
+
+            <!-- النص الرئيسي -->
+            <h1 class="text-white text-3xl font-bold leading-tight tracking-tight">تم إنشاء الحساب</h1>
+            <p class="mt-2 text-white/90 text-base font-normal leading-normal">لقد تم إنشاء حسابك بنجاح.</p>
+
+            <!-- خطوات التالية -->
+            <div class="mt-8 w-full max-w-md rounded-2xl bg-white p-6 text-right shadow-lg">
+        <p class="text-lg font-bold leading-tight tracking-[-0.015em] text-slate-800">الخطوات التالية</p>
+        <div class="mt-4 flex flex-col gap-3">
+            <div class="flex item-container gap-3">
+                <span class="material-symbols-outlined rtl-icon-adjustment mt-0.5 text-[#470d9d]">location_on</span>
+                <p class="text-slate-600 text-base font-normal leading-normal">حدد موقعك الحالي لنتائج أكثر ذكاءً</p>
+            </div>
+            <div class="flex item-container gap-3">
+                <span class="material-symbols-outlined rtl-icon-adjustment mt-0.5 text-[#470d9d]">person</span>
+                <p class="text-slate-600 text-base font-normal leading-normal">أكمل تفاصيل ملفك الشخصي (اختياري)</p>
+            </div>
+        </div>
+    </div>
+
+
+            <!-- أزرار التنقل -->
+            <div class="mt-8 flex w-full max-w-md flex-col items-stretch gap-3">
+                <a href="home_ar.html" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 bg-[#470d9d] text-white text-base font-bold leading-normal tracking-wide shadow-md transition-colors hover:bg-[#390b81]">
+                    <span class="truncate">الذهاب للصفحة الرئيسية</span>
+                </a>
+                <a href="profile_ar.html" class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-5 border-2 border-white bg-transparent text-white text-base font-bold leading-normal tracking-wide transition-colors hover:bg-white/10">
+                    <span class="truncate">إكمال الملف الشخصي</span>
+                </a>
+            </div>
+
+            <!-- ملاحظة التحقق -->
+            <p class="mt-8 text-white/70 text-sm font-normal leading-normal max-w-md">تم إرسال رابط التحقق إلى بريدك الإلكتروني.<br> يرجى مراجعة صندوق الوارد لتفعيل الحساب.</p>
+        </main>
+
+        <!-- رابط الخصوصية -->
+        <footer class="w-full p-6 text-center">
+            <a class="text-white text-sm font-normal leading-normal underline transition-opacity hover:opacity-80" href="privacy_settings_ar.html">إعدادات الخصوصية</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>نتائج البحث - دليل الأطباء</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+            font-family: 'Cairo', sans-serif; /* تغيير الخط إلى Cairo */
+        }
+
+        /* Animation for removing card */
+        .card-fade-out {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Make icon fill red */
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+            color: #e63946 !important; /* Red */
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            start: "#470d9d",
+                            end: "#907ffc"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Cairo", "sans-serif"], // تغيير الخط إلى Cairo
+                    },
+                    borderRadius: {
+                        '3xl': '1.5rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 25px -5px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-gradient-to-b from-primary-start to-primary-end font-sans">
+<div class="max-w-md mx-auto flex flex-col h-full min-h-screen">
+
+<header class="py-4 pr-4"> <!-- تغيير padding إلى right -->
+    <div class="flex items-center justify-between text-white">
+        <button onclick="window.location.href='search.html'" class="bg-white/20 p-1 rounded-xl">
+            <span class="material-icons">arrow_forward</span> <!-- تغيير أيقونة السهم إلى شكل آخر -->
+        </button>
+        <h1 class="text-xl font-bold">132 طبيبًا تم العثور عليهم</h1> <!-- ترجمة النص -->
+        <button class="bg-white/20 p-2 rounded-xl">
+            <span class="material-icons">filter_list</span>
+        </button>
+    </div>
+</header>
+
+<main class="flex-grow overflow-y-auto space-y-4 pt-4 pr-4 pb-24"> <!-- تغيير padding إلى right -->
+
+<!-- CARD 1 -->
+<div class="doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4" data-id="1">
+    <img class="w-24 h-24 rounded-2xl object-cover"
+         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT4TyehDg-7SN9XrvlpFMKlSjAVD1IqmYXY4fFkNYV80AR8ndoxq-tfFvs8pZIEx6kEkJEHJ5O4MDZTHWaHGZraoRqrnWk-xQITDOV1J7tbTT5sfZvFfI-srKj4ThVI9_FLIUnZg6t5hL4a1pUw0psou8nvJ4zNHjfFuzxuxI6KS2CZje6H1gGMAl38JXQWxgAmQZJTfsFMPY5HLxbSnQmSR81bej-KUVulv_rdtpCM013vNTTeoDS75kOG68SlN-U7ZAIi1fobcs"/>
+ <div class="flex-grow ">
+        <div class="flex justify-between items-start mb-1 ">
+            <div >
+                <h2 class=" mr-3 font-bold text-lg text-gray-900">د. صلاح عمر</h2> <!-- ترجمة النص -->
+                <p class=" mr-3 text-sm text-gray-500">دكتوراه في الطب - أخصائي القلب</p> <!-- ترجمة النص -->
+            </div>
+            <button class="fav-btn text-gray-400" data-id="1" type="button">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+            </button>
+        </div>
+        <p class="mr-3 text-sm text-gray-500 mb-2">قصر الباسل، الفيوم</p> <!-- ترجمة النص -->
+
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons text-yellow-400 text-lg">star</span>
+                <span class="font-semibold text-gray-800">4.5</span>
+                <span class="text-sm text-gray-400">(120)</span>
+            </div>
+            <p class="font-bold text-lg text-primary-start">250 جنيه مصري</p> <!-- ترجمة النص -->
+        </div>
+    </div>
+</div>
+
+<!-- CARD 2 -->
+<div class="doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4" data-id="2">
+    <img class="w-24 h-24 rounded-2xl object-cover"
+         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtUKXmfKzsaWdm12KGOc-JruoEzB-4Ukuuwv2R0LM3uN7h-E8mkZCNCknpjBbHZLVNJNbsKgOE1U5LOKQhN8f0_BGJA79SC5jPYSDg68ywyrQdJsDvHLOenx_NitNqmYUc8WjPS40YkpiIFL4r-2wn0sZ2ymA4KZ7qOAYaG912bDPUJY3KNJA0hrXtzTrU8tsiboE-BmnhD--zVD1OxQmrzQgEayFYoFNBEk9vgusGDMNu6pYUqlAmfmk71yYc06J7oIERNB_SK2M"/>
+    <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1">
+            <div>
+                <h2 class="font-bold mr-3 text-lg text-gray-900">د. أميرة حسن</h2> <!-- ترجمة النص -->
+                <p class="text-sm mr-3 text-gray-500">دكتوراه في الطب - أخصائية الأطفال</p> <!-- ترجمة النص -->
+            </div>
+            <button class="fav-btn text-gray-400" data-id="2" type="button">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+            </button>
+        </div>
+        <p class="text-sm mr-3 text-gray-500 mb-2">وسط البلد، القاهرة</p> <!-- ترجمة النص -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons text-yellow-400 text-lg">star</span>
+                <span class="font-semibold text-gray-800">4.8</span>
+                <span class="text-sm text-gray-400">(215)</span>
+            </div>
+            <p class="font-bold text-lg text-primary-start">300 جنيه مصري</p> <!-- ترجمة النص -->
+        </div>
+    </div>
+</div>
+
+<!-- CARD 3 -->
+<div class="doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4" data-id="3">
+    <img class="w-24 h-24 rounded-2xl object-cover"
+         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwP-bRT-PxoDbbY2mTHUG4Vq2DYHHBkTuTbRudE_JLEaV65OGOJ9Lj6TwliUTJFdSeSKT5cuFW-xaLaT-SMh0PAU4Ha1zFQyjdyJDMF5ZR5gmcxLD-K19khPouiWbFwi3F0bRFQnG_4JbiF-TD8BVVeky7Z5kuS1Xyp9nSV_shH-1FkENaz5otV5Go52shuTwL_nRg1HKtHVYznKUwjCEH6fRbVj3yVLnMP6rdCZgtbRhVXQPsI-QiHnjKzH20m-Bz2wEoB799Lgg"/>
+    <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1">
+            <div>
+                <h2 class="font-bold mr-3 text-lg text-gray-900">د. يوسف علي</h2> <!-- ترجمة النص -->
+                <p class="text-sm mr-3 text-gray-500">دكتوراه - أخصائي الأعصاب</p> <!-- ترجمة النص -->
+            </div>
+            <button class="fav-btn text-gray-400" data-id="3" type="button">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+            </button>
+        </div>
+        <p class="text-sm text-gray-500 mb-2 mr-3">الهرم، الجيزة</p> <!-- ترجمة النص -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons text-yellow-400 text-lg">star</span>
+                <span class="font-semibold text-gray-800">4.2</span>
+                <span class="text-sm text-gray-400">(88)</span>
+            </div>
+            <p class="font-bold text-lg text-primary-start">200 جنيه مصري</p> <!-- ترجمة النص -->
+        </div>
+    </div>
+</div>
+
+<!-- CARD 4 -->
+<div class="doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4" data-id="4">
+    <img class="w-24 h-24 rounded-2xl object-cover"
+         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHdDnWfMVTZzjFW26jzwt6PL4CiTJLi5UXbjJOkBsM4YRf8enBH-HaZUqzCFM_Hb3aHVGHtklvUioFpXpuY_fO9OoTSry3IhPdMBravCZv5ulbdwt7t-chAZE1cirtHgLI4vueo41NV4A_z_IoTQHDKpqfCdC5qpZTnibAAwcbTltxkrYh1eIEDmyfS07dzxdPLo1Kik8unHHF3As8rdkeKQPulbWVvPSM_xNglpBzrvGeQ7A29CXCuj3n00ZnzakzA8VKa1n0w8Q"/>
+    <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1">
+            <div>
+                <h2 class="font-bold mr-3 text-lg text-gray-900">د. فاطمة أحمد</h2> <!-- ترجمة النص -->
+                <p class="text-sm mr-3 text-gray-500">دكتوراه، دكتوراه في الأسنان - أخصائية النساء والتوليد</p> <!-- ترجمة النص -->
+            </div>
+            <button class="fav-btn text-gray-400" data-id="4" type="button">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+            </button>
+        </div>
+        <p class="text-sm mr-3 text-gray-500 mb-2">الزمالك، القاهرة</p> <!-- ترجمة النص -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons text-yellow-400 text-lg">star</span>
+                <span class="font-semibold text-gray-800">4.9</span>
+                <span class="text-sm text-gray-400">(302)</span>
+            </div>
+            <p class="font-bold text-lg text-primary-start">450 جنيه مصري</p> <!-- ترجمة النص -->
+        </div>
+    </div>
+</div>
+
+<!-- CARD 5 -->
+<div class="doctor-card bg-white rounded-3xl p-4 shadow-soft flex items-start space-x-4" data-id="5">
+    <img class="w-24 h-24 rounded-2xl object-cover"
+         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFB2S1Urr1x-QUzmzHen1TGs7yRp8gdUWMuNY_ZLilfotr-UYlWQHXwQB72h84k4-_pqbtmKhoG3INTdwV1AHOcF0f7IhMrjLEDbReqm3_QaQ_OjI6yOKkjpNDL5brXLEcayQ_luEYOWsUTOY6Wl6IpGGlcxozAuAMpJuaTTxncOi3ZndDkMKstq6C16ce6vCmBP8ozKAjjbmi5pEwUME1IXPGZvtGeik3TG1G4ek6UlwTyu5fmzcL24tWpurw9EUHEdgImyEYo"/>
+    <div class="flex-grow">
+        <div class="flex justify-between items-start mb-1">
+            <div>
+                <h2 class="font-bold mr-3 text-lg text-gray-900">د. كريم سعيد</h2> <!-- ترجمة النص -->
+                <p class="text-sm mr-3 text-gray-500">دكتوراه - أخصائي الأمراض الجلدية</p> <!-- ترجمة النص -->
+            </div>
+            <button class="fav-btn text-gray-400" data-id="5" type="button">
+                <span class="material-symbols-outlined fav-icon">favorite_border</span>
+            </button>
+        </div>
+        <p class="text-sm text-gray-500 mr-3 mb-2">المعادي، القاهرة</p> <!-- ترجمة النص -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-1">
+                <span class="material-icons text-yellow-400 text-lg">star</span>
+                <span class="font-semibold text-gray-800">4.6</span>
+                <span class="text-sm text-gray-400">(150)</span>
+            </div>
+            <p class="font-bold text-lg text-primary-start">350 جنيه مصري</p> <!-- ترجمة النص -->
+        </div>
+    </div>
+</div>
+
+</main>
+
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-sm bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.1)] rounded-t-2xl">
+    <div class="flex justify-around items-center h-16">
+        <a href="home_ar.html" class="flex flex-col items-center text-[#470d9d] font-semibold">
+            <span class="material-symbols-outlined filled">home</span>
+            <span class="text-xs mt-1">الرئيسية</span> <!-- ترجمة النص -->
+        </a>
+        <a href="news_ar.html" class="flex flex-col items-center text-gray-400 hover:text-[#470d9d]">
+            <span class="material-symbols-outlined">article</span>
+            <span class="text-xs mt-1">أخبار</span> <!-- ترجمة النص -->
+        </a>
+        <a href="search_ar.html" class="flex flex-col items-center text-gray-400 hover:text-[#470d9d]">
+            <span class="material-symbols-outlined">search</span>
+            <span class="text-xs mt-1">بحث</span> <!-- ترجمة النص -->
+        </a>
+        <a href="favorite_ar.html" class="flex flex-col items-center text-gray-400 hover:text-[#470d9d]">
+            <span class="material-symbols-outlined">favorite_border</span>
+            <span class="text-xs mt-1">المفضلة</span> <!-- ترجمة النص -->
+        </a>
+        <a href="profile_ar.html" class="flex flex-col items-center text-gray-400 hover:text-[#470d9d]">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-xs mt-1">الملف الشخصي</span> <!-- ترجمة النص -->
+        </a>
+    </div>
+</nav>
+
+</div>
+
+<!-- FAVORITE LOGIC -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const favButtons = document.querySelectorAll(".fav-btn");
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    favButtons.forEach(btn => {
+        const doctorId = btn.dataset.id;
+        const icon = btn.querySelector(".fav-icon");
+        const card = btn.closest(".doctor-card");
+
+        // لو الدكتور موجود في المفضلة → اظهر القلب مليان
+        if (favorites.includes(doctorId)) {
+            icon.textContent = "favorite";
+            icon.classList.add("fill-icon");
+        }
+
+        btn.addEventListener("click", () => {
+
+            if (favorites.includes(doctorId)) {
+                // شيل من المفضلة
+                favorites = favorites.filter(f => f !== doctorId);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+
+                // رجّع القلب فاضي
+                icon.textContent = "favorite_border";
+                icon.classList.remove("fill-icon");
+
+                // امسح الكرت بأنيميشن
+                card.classList.add("card-fade-out");
+                setTimeout(() => card.remove(), 300);
+
+            } else {
+                // ضيفه للمفضلة
+                favorites.push(doctorId);
+                localStorage.setItem("favorites", JSON.stringify(favorites));
+
+                icon.textContent = "favorite";
+                icon.classList.add("fill-icon");
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

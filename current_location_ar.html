@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="light" dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>موقعك الحالي</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+<style>
+.gradient-background {
+    background-image: linear-gradient(to bottom, #470d9d, #907ffc);
+}
+
+.select-arrow {
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCU_0iL68y2QrUUBuME-EAAuX31BIahEFiYIWHrIZ7eidnSZOsFdiM2n-0EAX8umG4KC59z_1vx348l7oDljsd9t3X0jEFtA86b4xZbPFilAIYCwzJyXSfI5B7lZldfZTaTGufoaZeF8WEcko7a0dHlbQSLhZsDO20u2PUc_NgOtioIy4jJM_IVz1CD_5hQQQbYtrsEQi8j8NXRCrJVX5FXONoqSAkvAK86YygoQaJmAuwGzRaW6-UCKcBk_CDJRRn7-0sMYN5jiFQ");
+    background-repeat: no-repeat;
+    background-position: left 1rem center;
+    background-size: 1.5em;
+}
+</style>
+
+</head>
+<body class="font-display font-cairo">
+
+<div class="relative flex min-h-screen w-full flex-col items-center gradient-background p-4">
+
+<h1 class="text-white text-[32px] font-bold text-center pb-3 pt-6">موقعك الحالي</h1>
+
+<!-- خريطة -->
+<div class="relative flex w-full max-w-md px-4 py-3 justify-center">
+<div class="relative w-full bg-center bg-no-repeat aspect-[2/1] bg-cover rounded-xl shadow-lg"
+style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPFB9X1P9SE6FqTmvugVd7bPqmWoo2H_URKFmWsDhFFFWyQtgjvlTh9VvHDdrR2bKn_rRIVM-CdLEwtX3OEo-IknOVSePeLp1gfZlvio1qiGaKt0qf2NRtdQ6giP0g7VbXzJjs5P6XOQOMluWlLlhnl_DnEARg4OH-JRoxljGHLxjSFi8OSq-3402ECaJyZCOYIw1icKtprxzQLBs_6XZXVpv89KuDSQGAsZRveSMPCBAmEZgocRlzXSmsAof8Nt3779A7c-6i7QQ");'>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 rounded-xl">
+<span class="material-symbols-outlined text-white text-5xl">location_on</span>
+</div>
+</div>
+</div>
+
+<!-- زر الموقع الحالي -->
+<div class="flex w-full max-w-md px-4 py-3 justify-center">
+<button id="detect-location"
+class="flex cursor-pointer items-center justify-center rounded-xl h-14 px-5 flex-1 bg-white text-primary gap-2.5 text-base font-bold shadow-md">
+<span class="material-symbols-outlined text-primary text-2xl">my_location</span>
+<span class="font-cairo">استخدام موقعي الحالي</span>
+</button>
+</div>
+
+<div class="flex items-center w-full max-w-md px-4 py-3">
+<div class="flex-grow border-t border-white/50"></div>
+<span class="px-4 text-sm font-medium text-white/80">أو</span>
+<div class="flex-grow border-t border-white/50"></div>
+</div>
+
+<!-- المدينة والمنطقة -->
+<div class="flex w-full max-w-md flex-col gap-4 px-4 py-3">
+
+<label class="flex flex-col w-full">
+<p class="text-white pb-2 font-cairo">المدينة</p>
+<select id="city-select"
+class="select-arrow w-full rounded-xl bg-white h-14 px-4 py-3 text-base font-cairo">
+<option value="none" class="font-cairo">اختر مدينة</option>
+<option value="newyork" class="font-cairo">الفيوم</option>
+<option value="la" class="font-cairo">المنيا</option>
+<option value="lb" class="font-cairo">بني سويف</option>
+<option value="lc" class="font-cairo">اسيوط</option>
+</select>
+</label>
+
+<label class="flex flex-col w-full">
+<p class="text-white pb-2 font-cairo">المنطقة</p>
+<select id="area-select"
+class="select-arrow w-full rounded-xl bg-white h-14 px-4 py-3 text-base font-cairo">
+<option value="none" class="font-cairo">اختر منطقة</option>
+</select>
+</label>
+
+</div>
+
+<!-- صندوق عرض الموقع -->
+<div class="w-full max-w-md px-4 py-3">
+<div class="bg-white rounded-xl p-4 shadow-md">
+<h3 class="text-primary text-sm font-bold font-cairo">موقعك المحدد</h3>
+<div class="flex items-center mt-2 gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">map</span>
+<p id="location-display" class="text-[#141118] text-base font-medium font-cairo">
+لم يتم اختيار موقع بعد
+</p>
+</div>
+</div>
+</div>
+
+ <div class="flex-grow"></div>
+    <div class="flex w-full max-w-md px-4 pt-6 pb-4 justify-center">
+<button id="confirm-location"
+class="w-full h-14 bg-[#480ca8] text-white text-lg font-bold rounded-xl shadow-md font-cairo">
+    تأكيد الموقع
+</button>
+
+</div>
+
+  </div>
+
+<!-- سكربت -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const citySelect = document.getElementById("city-select");
+    const areaSelect = document.getElementById("area-select");
+    const displayText = document.getElementById("location-display");
+    const confirmBtn = document.getElementById("confirm-location");
+    const detectBtn = document.getElementById("detect-location");
+
+    // عند تغيير المدينة
+    citySelect.addEventListener("change", () => {
+        const selectedCity = citySelect.value;
+        updateAreaOptions(selectedCity);
+        updateLocation();
+    });
+
+    // عند تغيير المنطقة
+    areaSelect.addEventListener("change", updateLocation);
+
+    function updateAreaOptions(city) {
+        areaSelect.innerHTML = "";
+        const options = {
+            newyork: ["اطسا", "ابشواى", "سنورس", "سنهور"],
+            la: ["وسط المنيا", "شرق المنيا", "غرب المنيا", "جنوب المنيا"],
+            lb: ["وسط بني سويف", "شرق بني سويف", "غرب بني سويف", "جنوب بني سويف"],
+            lc: ["وسط اسيوط", "شرق اسيوط", "غرب اسيوط", "جنوب اسيوط"]
+        };
+        const areas = options[city] || [];
+        areas.forEach(area => {
+            const option = document.createElement("option");
+            option.value = area;
+            option.text = area;
+            areaSelect.add(option);
+        });
+    }
+
+    function updateLocation() {
+        const city = citySelect.options[citySelect.selectedIndex].text;
+        const area = areaSelect.options[areaSelect.selectedIndex].text;
+
+        let finalLocation = "";
+
+        if (city !== "اختر مدينة" && area !== "اختر منطقة") {
+            finalLocation = `${city}، ${area}`;
+        } else if (city !== "اختر مدينة") {
+            finalLocation = city;
+        } else if (area !== "اختر منطقة") {
+            finalLocation = area;
+        } else {
+            finalLocation = "لم يتم اختيار موقع بعد";
+        }
+
+        displayText.textContent = finalLocation;
+    }
+
+    // ⭐ عند الضغط على "استخدام موقعي الحالي"
+    detectBtn.addEventListener("click", () => {
+        displayText.textContent = "جاري تحديد موقعك ...";
+
+        if (!navigator.geolocation) {
+            displayText.textContent = "❌ المتصفح لا يدعم تحديد الموقع";
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude.toFixed(4);
+                const lon = position.coords.longitude.toFixed(4);
+
+                displayText.textContent = `إحداثياتك: ${lat}, ${lon}`;
+            },
+            () => {
+                displayText.textContent = "❌ فشل تحديد الموقع، قم بالسماح للوصول إلى GPS";
+            }
+        );
+    });
+
+    // ⭐ عند الضغط على "تأكيد الموقع"
+    confirmBtn.addEventListener("click", () => {
+        const value = displayText.textContent;
+
+        if (value === "لم يتم اختيار موقع بعد") {
+            alert("من فضلك اختر المدينة والمنطقة أولاً أو استخدم GPS");
+            return;
+        }
+
+        // لو هي إحداثيات
+        if (value.includes("إحداثياتك")) {
+            const coords = value.replace("إحداثياتك: ", "").trim();
+            localStorage.setItem("userCoords", coords);
+            localStorage.removeItem("userLocation"); // إزالة العنوان لو موجود
+        }
+        // لو هو عنوان نصي (مدينة / منطقة)
+        else {
+            localStorage.setItem("userLocation", value);
+            localStorage.removeItem("userCoords"); // إزالة الإحداثيات لو موجودة
+        }
+
+        // الانتقال للصفحة الرئيسية
+        sessionStorage.setItem("forceLocationReload", "1");
+        window.history.back();
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
