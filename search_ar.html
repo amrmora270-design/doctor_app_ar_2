@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -63,11 +64,26 @@ input[type="radio"]:checked {
     background: var(--purple-accent) !important;
     color: white !important;
 }
+/* إخفاء السهم بالكامل */
+select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: none !important;
+}
 
 .specialty-btn {
     white-space: nowrap;
     line-height: 1;
 }
+
+.custom-select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: none !important;
+}
+
 </style>
 
 <script>
@@ -114,24 +130,41 @@ tailwind.config = {
 <!-- التخصصات -->
 <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
     <h2 class="text-lg font-semibold text-gray-900 mb-3">التخصصات</h2>
+  
+    <label class="block text-sm mb-1">التخصص الرئيسي</label>
+    <div class="relative">
+    <select id="main-specialty"
+        class="w-full py-3 pl-10 pr-4 bg-gray-100 rounded-xl">
+        <option value="">اختر التخصص الرئيسي</option>
+        <option value="internal">الباطنة</option>
+        <option value="surgery">الجراحة</option>
+        <option value="women">النساء والتوليد</option>
+        <option value="pediatrics">الأطفال</option>
+    </select>
 
-    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1 -mx-2 px-2 whitespace-nowrap">
-        <button class="specialty-btn px-4 py-2 rounded-full text-sm font-medium chip-active">الكل</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الباطنة العامة</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجراحة العامة</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">النساء والتوليد</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">القلب والأوعية</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجلدية</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأنف والأذن</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">المخ والأعصاب</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">المسالك البولية</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأسنان</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الصدر والحساسية</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الكلى</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الطب النفسي</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الأورام</button>
-        <button class="specialty-btn px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm">الجهاز الهضمي والكبد</button>
-    </div>
+    <!-- أيقونة السهم اليسار -->
+    <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+        expand_more
+    </span>
+</div>
+
+
+        <!-- التخصص الفرعي -->
+        
+    <label class="block text-sm mb-1">التخصص الفرعي</label>
+   <div class="relative">
+    <select id="sub-specialty"
+        class="w-full py-3 pl-10 pr-4 bg-gray-100 rounded-xl">
+        <option value="">اختر التخصص الفرعي</option>
+    </select>
+
+    <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+        expand_more
+    </span>
+</div>
+
+
+   
 </div>
 
 <!-- الموقع -->
@@ -281,27 +314,6 @@ function handleLocationChange(el) {
     if (el.value === "another") window.location.href = "current_location_ar.html";
 }
 
-/* 🔥 تفعيل التخصصات */
-document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".specialty-btn");
-
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-
-            // إزالة التفعيل من الجميع
-            buttons.forEach(b => {
-                b.classList.remove("chip-active");
-                b.classList.remove("text-white");
-                b.classList.add("bg-gray-100", "text-gray-600");
-            });
-
-            // تفعيل الضغط
-            btn.classList.add("chip-active");
-            btn.classList.add("text-white");
-            btn.classList.remove("bg-gray-100", "text-gray-600");
-        });
-    });
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     const select = document.querySelector("select.hide-arrow");
@@ -314,6 +326,54 @@ document.addEventListener("DOMContentLoaded", () => {
         select.options[0].textContent = savedLocation; // تعديل النص المعروض
     }
 });
+
+
+ document.addEventListener("DOMContentLoaded", () => {
+
+    const mainSelect = document.getElementById("main-specialty");
+    const subSelect  = document.getElementById("sub-specialty");
+
+    const specialties = {
+        internal: [
+            "باطنة عامة",
+            "قلب وأوعية دموية",
+            "جهاز هضمي وكبد",
+            "كلى"
+        ],
+        surgery: [
+            "جراحة عامة",
+            "جراحة عظام",
+            "جراحة مخ وأعصاب",
+            "جراحة تجميل"
+        ],
+        women: [
+            "نساء وتوليد",
+            "علاج تأخر الإنجاب",
+            "متابعة حمل"
+        ],
+        pediatrics: [
+            "أطفال عامة",
+            "حديثي الولادة",
+            "حساسية ومناعة"
+        ]
+    };
+
+    mainSelect.addEventListener("change", () => {
+        const selected = mainSelect.value;
+        subSelect.innerHTML = `<option value="">اختر التخصص الفرعي</option>`;
+
+        if (!specialties[selected]) return;
+
+        specialties[selected].forEach(sub => {
+            const option = document.createElement("option");
+            option.value = sub;
+            option.textContent = sub;
+            subSelect.appendChild(option);
+        });
+    });
+
+});
+
 
 // عند العودة من صفحة تحديد الموقع
 function handleLocationChange(el) {
